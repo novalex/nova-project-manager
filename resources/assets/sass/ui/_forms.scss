@@ -1,0 +1,46 @@
+form {
+	max-width: $width-medium;
+	margin: 0 auto;
+}
+
+.fieldset {
+	margin-bottom: 10px;
+
+	label {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+	}
+}
+
+.fieldgroup {
+	display: flex;
+	flex-direction: row;
+
+	span {
+		padding: $input-padding;
+		color: $text-color-fade;
+		border: 1px solid $body-border;
+
+		&:first-child { border-right-width: 0; }
+		&:last-child { border-left-width: 0; }
+	}
+}
+
+input:not([type="submit"]):not([type="file"]),
+textarea {
+	outline: none;
+	padding: $input-padding;
+	border: 1px solid $body-border;
+	background-color: $body-bg-alt;
+	transition: background-color 0.2s;
+
+	&:hover,
+	&:focus {
+		background-color: $body-bg;
+	}
+}

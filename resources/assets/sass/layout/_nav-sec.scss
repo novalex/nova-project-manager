@@ -1,0 +1,38 @@
+#nav-sec {
+	position: fixed;
+	top: 0;
+	left: $nav-width;
+	bottom: 0;
+	width: $nav-sec-width;
+	border-right: 1px solid $body-border;
+
+	+ #content {
+		padding-left: $nav-sec-width + $content-padding;
+	}
+
+	.menu-item {
+		border-bottom: 1px solid $body-border;
+		transition: background-color 0.2s;
+
+		&:hover,
+		&.active {
+			background-color: $body-bg-alt;
+		}
+
+		a {
+			display: block;
+			height: $nav-width;
+			padding: $content-padding;
+			color: $text-color;
+			font-weight: 500;
+			line-height: ( $nav-width - $content-padding * 2 ) / 2;
+
+			small {
+				display: block;
+				color: $text-color-fade;
+				font-weight: 400;
+				font-size: 12px;
+			}
+		}
+	}
+}

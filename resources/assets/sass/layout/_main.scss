@@ -1,0 +1,22 @@
+
+body {
+	color: $text-color;
+	font-size: $font-size-base;
+	font-family: $font-family-sans-serif;
+	line-height: $line-height-base;
+	padding-left: $nav-width;
+}
+
+#content {
+	padding: $content-padding;
+}
+
+.app-container {
+	> .alert {
+		position: fixed;
+		left: 40%;
+		right: 40%;
+		bottom: 0;
+		border-bottom: 0;
+	}
+}
