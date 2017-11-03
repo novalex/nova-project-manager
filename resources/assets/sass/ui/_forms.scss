@@ -1,6 +1,5 @@
 form {
-	max-width: $width-medium;
-	margin: 0 auto;
+	max-width: 100%;
 }
 
 .fieldset {
@@ -17,7 +16,7 @@ form {
 	}
 }
 
-.fieldgroup {
+.inputgroup {
 	display: flex;
 	flex-direction: row;
 

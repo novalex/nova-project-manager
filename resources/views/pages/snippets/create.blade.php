@@ -1,5 +1,5 @@
 @php
-	$title = 'New Project';
+	$title = 'New Snippet';
 
 	$defaultData = json_encode([
 		'navTopTitle' => old('name'),
@@ -7,7 +7,7 @@
 	]);
 @endphp
 
-@extends('pages.projects.main')
+@extends('pages.snippets.main')
 
 @section('nav-top-title')
 	<transition appear>
@@ -17,7 +17,7 @@
 @endsection
 
 @section('nav-top-actions')
-	<a href="/projects" class="button">Cancel</a>
+	<a href="/snippets" class="button">Cancel</a>
 	<button form="form-create" class="button -green -submit">Create</a>
 @endsection
 
@@ -33,17 +33,17 @@
 			</div>
 		@endif
 
-		<form method="POST" id="form-create" name="form-create" action="/projects">
+		<form method="POST" id="form-create" name="form-create" action="/snippets">
 			<div class="fieldgroup -post-meta">
 				<div class="fieldset">
 					<label for="name">Name</label>
-					<input type="text" id="name" name="name" v-model="navTopTitle" value="{{ old('name') }}">
+					<input type="text" id="name" name="name" v-model="navTopTitle" v-send-value send-value-class="project-slug" value="{{ old('name') }}">
 				</div>
 
 				<div class="fieldset">
 					<label for="slug">Slug</label>
 					<div class="inputgroup">
-						<span class="prefix">{{ url( '/projects' ) }}/</span>
+						<span class="prefix">{{ url( '/snippets' ) }}/</span>
 						<input type="text" id="slug" name="slug" class="filter-slug" value="{{ old('slug') }}">
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 					<label for="category">Category</label>
 					<input type="text" id="category" name="category" value="{{ old('category') }}" list="categories">
 					<datalist id="categories">
-						@foreach ( get_categories( 'project' ) as $category )
+						@foreach ( get_categories( 'snippet' ) as $category )
 							<option>{{ $category->name }}</option>
 						@endforeach
 					</datalist>

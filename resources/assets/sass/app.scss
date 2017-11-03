@@ -8,15 +8,21 @@
 // Variables
 @import "variables";
 
+// Typography
+@import "typography";
+
 // Layout
 @import "layout/main";
 @import "layout/nav-main";
 @import "layout/nav-top";
 @import "layout/nav-sec";
 
+// Plugins
+@import "plugins/highlight";
+@import "plugins/medium-editor";
+
 // UI
 @import "ui/alerts";
 @import "ui/forms";
 @import "ui/buttons";
-
-// Plugins
+@import "ui/links";

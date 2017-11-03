@@ -1,13 +1,5 @@
 @php
-	$sec_menu_items = App\Project::get()->each( function( $item, $key ) {
-		if ( empty( $item->slug ) ) {
-			$item->url = 'projects/' . $key;
-		} else {
-			$item->url = 'projects/' . $item->slug;
-		}
-
-		$item->desc = $item->type;
-	});
+	$sec_menu_items = get_categories_menu( 'project', [ 'class' => 'half' ] );
 @endphp
 
 @section('nav-top-head')

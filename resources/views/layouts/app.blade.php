@@ -17,7 +17,7 @@
 		<div id="app">
 			<div class="app-container">
 				@if ( session('status') )
-				    <div class="alert alert-{{ session('status') }}">
+				    <div class="alert -{{ session('status') }}">
 				        <ul>
 				        	<li>{{ session('message') }}</li>
 				        </ul>

@@ -1,13 +1,13 @@
 @php
-	$title = 'Edit "' . $project->name . '"';
+	$title = 'Edit "' . $snippet->name . '"';
 
 	$defaultData = json_encode([
-		'navTopTitle' => $project->name,
-		'navTopSubtitle' => $project->slug,
+		'navTopTitle' => $snippet->name,
+		'navTopSubtitle' => $snippet->slug,
 	]);
 @endphp
 
-@extends('pages.projects.main')
+@extends('pages.snippets.main')
 
 @section('nav-top-title')
 	<transition appear>
@@ -17,8 +17,8 @@
 @endsection
 
 @section('nav-top-actions')
-	<a href="/projects/{{ $project->slug }}" class="button">Cancel</a>
-	<form method="POST" action="/projects/{{ $project->slug }}">
+	<a href="/snippets/{{ $snippet->slug }}" class="button">Cancel</a>
+	<form method="POST" action="/snippets/{{ $snippet->slug }}">
 		{{ csrf_field() }}
 		{{ method_field( 'DELETE' ) }}
 		<button class="button -red action-delete">Delete</button>
@@ -38,24 +38,24 @@
 			</div>
 		@endif
 
-		<form method="POST" id="form-edit" name="form-edit" action="/projects/{{ $project->slug }}">
+		<form method="POST" id="form-edit" name="form-edit" action="/snippets/{{ $snippet->slug }}">
 			<div class="fieldgroup -post-meta">
 				<div class="fieldset">
 					<label for="name">Name</label>
-					<input type="text" id="name" name="name" v-model="navTopTitle" value="{{ $project->name }}">
+					<input type="text" id="name" name="name" v-model="navTopTitle" value="{{ $snippet->name }}">
 				</div>
 
 				<div class="fieldset">
 					<label for="slug">Slug</label>
 					<div class="inputgroup">
-						<span class="prefix">{{ url( '/projects' ) }}/</span>
-						<input type="text" id="slug" name="slug" value="{{ $project->slug }}" class="filter-slug">
+						<span class="prefix">{{ url( '/snippets' ) }}/</span>
+						<input type="text" id="slug" name="slug" value="{{ $snippet->slug }}" class="filter-slug">
 					</div>
 				</div>
 
 				<div class="fieldset">
 					<label for="category">Category</label>
-					<input type="text" id="category" name="category" value="{{ get_category( $project->category_id ) }}" list="categories">
+					<input type="text" id="category" name="category" value="{{ get_category( $snippet->category_id ) }}" list="categories">
 					<datalist id="categories">
 						@foreach ( get_categories( 'snippet' ) as $category )
 							<option>{{ $category->name }}</option>
@@ -67,7 +67,7 @@
 			<div class="fieldgroup -post-content">
 				<div class="fieldset">
 					<label for="body">Content</label>
-					<textarea id="body" name="body" rows="12" class="editable">{{ $project->body }}</textarea>
+					<textarea id="body" name="body" rows="12" class="editable">{{ $snippet->body }}</textarea>
 				</div>
 			</div>
 

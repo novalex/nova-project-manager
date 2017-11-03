@@ -1,0 +1,49 @@
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+
+h1 {
+	font-size: 260%;
+}
+
+h2 {
+	font-size: 220%;
+}
+
+h3 {
+	font-size: 180%;
+}
+
+h4 {
+	font-size: 140%;
+}
+
+h6 {
+	font-size: 80%;
+}
+
+strong {
+	font-weight: 600;
+}
+
+small {
+	font-size: 90%;
+}
+
+p {
+	span {
+		display: inline-block;
+		font-size: 100%;
+	}
+}
+
+pre {
+	font-size: 12px;
+	font-family: $font-family-monospace;
+	
+	code {
+		display: block;
+		padding: $content-padding;
+		background: #232323;
+	}
+}

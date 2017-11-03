@@ -1,3 +1,7 @@
+@php
+	$title = 'Dashboard';
+@endphp
+
 @extends('layouts.app')
 
 @section('content')

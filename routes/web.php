@@ -11,8 +11,11 @@
 |
 */
 
-Route::view('/', 'pages.dashboard', [
-	'title' => 'Dashboard'
-]);
+Route::view( '/', 'pages.dashboard' );
 
-Route::resource('projects', 'ProjectController');
+Route::resource( 'projects', 'ProjectController' );
+
+Route::resource( 'snippets', 'SnippetController' );
+
+Route::get( 'category/{category}', 'CategoryController@index' );
+Route::get( '{type}/category/{category}', 'CategoryController@type_index' );

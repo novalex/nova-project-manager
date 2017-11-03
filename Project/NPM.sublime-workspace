@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"body-",
+				"body-bg-alt"
+			],
+			[
+				"tex",
+				"text-color-fade"
+			],
+			[
+				"content",
+				"content-padding"
+			],
+			[
+				"field",
+				"fieldgroup"
+			],
+			[
 				"sen",
 				"send-value-class"
 			],
@@ -232,37 +248,10 @@
 	"buffers":
 	[
 		{
-			"file": "/E/Sites/NPM/app/Http/Controllers/ProjectController.php",
+			"file": "/E/Sites/NPM/app/Core/helpers.php",
 			"settings":
 			{
-				"buffer_size": 2864,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/E/Sites/NPM/resources/views/partials/nav-sec.blade.php",
-			"settings":
-			{
-				"buffer_size": 378,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/E/Sites/NPM/resources/views/pages/projects/create.blade.php",
-			"settings":
-			{
-				"buffer_size": 1744,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/E/Sites/NPM/resources/assets/js/directives/send-value.js",
-			"settings":
-			{
-				"buffer_size": 389,
+				"buffer_size": 1128,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -271,7 +260,70 @@
 			"file": "/E/Sites/NPM/resources/assets/js/app.js",
 			"settings":
 			{
-				"buffer_size": 1704,
+				"buffer_size": 1953,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/resources/views/pages/projects/show.blade.php",
+			"settings":
+			{
+				"buffer_size": 543,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/app/Http/Controllers/CategoryController.php",
+			"settings":
+			{
+				"buffer_size": 880,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/resources/views/pages/projects/index.blade.php",
+			"settings":
+			{
+				"buffer_size": 857,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/app/Category.php",
+			"settings":
+			{
+				"buffer_size": 812,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/resources/views/pages/projects/create.blade.php",
+			"settings":
+			{
+				"buffer_size": 1996,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/resources/views/pages/projects/main.blade.php",
+			"settings":
+			{
+				"buffer_size": 161,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/app/Http/Controllers/ProjectController.php",
+			"settings":
+			{
+				"buffer_size": 3005,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -280,25 +332,52 @@
 			"file": "/E/Sites/NPM/resources/views/pages/projects/edit.blade.php",
 			"settings":
 			{
-				"buffer_size": 2019,
+				"buffer_size": 2309,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/E/Sites/NPM/resources/assets/js/ui/forms.js",
+			"file": "/E/Sites/NPM/resources/views/pages/snippets/create.blade.php",
 			"settings":
 			{
-				"buffer_size": 261,
+				"buffer_size": 2041,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/E/Sites/NPM/resources/views/layouts/app.blade.php",
+			"file": "/E/Sites/NPM/resources/views/pages/snippets/edit.blade.php",
 			"settings":
 			{
-				"buffer_size": 1056,
+				"buffer_size": 2309,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/resources/views/pages/snippets/category.blade.php",
+			"settings":
+			{
+				"buffer_size": 763,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/resources/views/pages/projects/category.blade.php",
+			"settings":
+			{
+				"buffer_size": 763,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/E/Sites/NPM/routes/web.php",
+			"settings":
+			{
+				"buffer_size": 679,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -311,10 +390,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 400.0,
-		"last_filter": "",
+		"height": 225.0,
+		"last_filter": "reinden",
 		"selected_items":
 		[
+			[
+				"reinden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"remove",
 				"Package Control: Remove Package"
@@ -443,9 +530,11 @@
 	[
 		"/E/Sites/NPM",
 		"/E/Sites/NPM/app",
+		"/E/Sites/NPM/app/Core",
 		"/E/Sites/NPM/app/Http",
 		"/E/Sites/NPM/app/Http/Controllers",
 		"/E/Sites/NPM/app/Providers",
+		"/E/Sites/NPM/bootstrap",
 		"/E/Sites/NPM/database",
 		"/E/Sites/NPM/database/migrations",
 		"/E/Sites/NPM/resources",
@@ -459,65 +548,100 @@
 		"/E/Sites/NPM/resources/assets/sass/layout",
 		"/E/Sites/NPM/resources/assets/sass/plugins",
 		"/E/Sites/NPM/resources/assets/sass/ui",
-		"/E/Sites/NPM/resources/lang",
-		"/E/Sites/NPM/resources/lang/en",
 		"/E/Sites/NPM/resources/views",
 		"/E/Sites/NPM/resources/views/layouts",
 		"/E/Sites/NPM/resources/views/pages",
 		"/E/Sites/NPM/resources/views/pages/projects",
-		"/E/Sites/NPM/resources/views/partials"
+		"/E/Sites/NPM/resources/views/pages/snippets",
+		"/E/Sites/NPM/resources/views/partials",
+		"/E/Sites/NPM/routes"
 	],
 	"file_history":
 	[
-		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc.defaults.json",
+		"/E/Sites/NPM/database/migrations/2017_10_30_205132_create_categories_table.php",
+		"/E/Sites/NPM/resources/assets/js/ui/editor.js",
+		"/E/Sites/NPM/resources/assets/sass/ui/_buttons.scss",
+		"/E/Sites/NPM/resources/assets/sass/plugins/_highlight.scss",
+		"/E/Sites/NPM/resources/assets/sass/_typography.scss",
+		"/E/Sites/NPM/app/Http/Controllers/SnippetController.php",
+		"/E/Sites/NPM/resources/views/pages/snippets/create.blade.php",
+		"/E/Sites/NPM/resources/views/pages/snippets/edit.blade.php",
+		"/E/Sites/NPM/app/Http/Controllers/CategoryController.php",
+		"/E/Sites/NPM/app/Category.php",
+		"/E/Sites/NPM/resources/views/pages/snippets/category.blade.php",
+		"/E/Sites/NPM/resources/views/pages/snippets/index.blade.php",
+		"/E/Sites/NPM/resources/views/pages/snippets/main.blade.php",
+		"/E/Sites/NPM/routes/web.php",
+		"/E/Sites/NPM/resources/views/pages/snippets/show.blade.php",
+		"/E/Sites/NPM/resources/assets/sass/layout/_main.scss",
+		"/E/Sites/NPM/composer.json",
+		"/E/Sites/NPM/app/Core/helpers.php",
+		"/E/Sites/NPM/app/Snippet.php",
+		"/E/Sites/NPM/database/migrations/2017_10_28_133952_create_snippets_table.php",
+		"/E/Sites/NPM/database/migrations/2017_10_14_124659_create_projects_table.php",
+		"/E/Sites/NPM/resources/assets/js/plugins/medium-editor.js",
+		"/E/Sites/NPM/resources/views/pages/projects/show.blade.php",
 		"/E/Sites/NPM/resources/assets/js/app.js",
+		"/E/Sites/NPM/resources/assets/sass/ui/_forms.scss",
+		"/E/Sites/NPM/resources/assets/sass/plugins/_medium-editor.scss",
+		"/E/Sites/NPM/resources/assets/sass/layout/_nav-sec.scss",
+		"/E/Sites/NPM/resources/views/pages/snippets/folder.blade.php",
 		"/E/Sites/NPM/resources/assets/sass/app.scss",
+		"/E/Sites/NPM/resources/views/pages/projects/index.blade.php",
+		"/E/Sites/NPM/resources/views/layouts/app.blade.php",
+		"/E/Sites/NPM/resources/assets/js/plugins/highlight.js",
+		"/E/Sites/NPM/resources/assets/sass/_variables.scss",
+		"/E/Sites/NPM/resources/assets/js/bootstrap.js",
+		"/E/Sites/NPM/public/mix-manifest.json",
+		"/E/Sites/NPM/resources/assets/sass/_reset.scss",
+		"/E/Sites/NPM/resources/assets/sass/ui/_links.scss",
+		"/E/Sites/NPM/node_modules/vue/src/core/vdom/vnode.js",
+		"/E/Sites/NPM/node_modules/vue/src/core/vdom/helpers/normalize-children.js",
+		"/E/Sites/NPM/resources/views/partials/nav-sec.blade.php",
+		"/E/Sites/NPM/resources/assets/sass/ui/_alerts.scss",
+		"/E/Sites/NPM/resources/assets/sass/layout/_nav-top.scss",
+		"/E/Sites/NPM/resources/views/pages/projects/create.blade.php",
+		"/E/Sites/NPM/resources/views/pages/projects/edit.blade.php",
+		"/E/Sites/NPM/vendor/phpunit/php-code-coverage/src/Report/Html/Renderer/Template/css/bootstrap.min.css",
+		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Auth/Console/stubs/make/views/auth/passwords/email.stub",
+		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Auth/Console/stubs/make/views/home.stub",
+		"/E/Sites/NPM/resources/assets/js/ui/actions.js",
+		"/E/Sites/NPM/resources/views/partials/nav-main.blade.php",
+		"/E/Sites/NPM/resources/views/partials/nav-top.blade.php",
+		"/E/Sites/NPM/public/css/app.css",
+		"/E/Sites/NPM/app/Http/Controllers/ProjectController.php",
+		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/promotion/button.blade.php",
+		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Mail/resources/views/html/themes/default.css",
+		"/E/Sites/NPM/Project/NPM.sublime-project",
+		"/E/Sites/NPM/resources/views/pages/projects/main.blade.php",
+		"/E/Sites/NPM/resources/assets/js/directives/send-value.js",
+		"/E/Sites/NPM/resources/views/pages/dashboard.blade.php",
+		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/404.blade.php",
+		"/E/Sites/NPM/resources/assets/js/ui/forms.js",
+		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc.defaults.json",
 		"/E/Sites/NPM/resources/assets/sass/plugins/_awesomplete.scss",
 		"/E/Sites/NPM/resources/assets/sass/plugins/awesomplete.theme.css",
 		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/User/.jsbeautifyrc",
 		"/C/Windows/System32/drivers/etc/hosts",
-		"/E/Sites/NPM/resources/views/layouts/app.blade.php",
 		"/C/Users/Alex/.sass-lint.yml",
-		"/E/Sites/NPM/resources/assets/sass/layout/_nav-top.scss",
-		"/E/Sites/NPM/resources/assets/js/ui/actions.js",
-		"/E/Sites/NPM/resources/views/pages/projects/show.blade.php",
-		"/E/Sites/NPM/resources/views/pages/projects/index.blade.php",
-		"/E/Sites/NPM/resources/assets/sass/ui/_alerts.scss",
-		"/E/Sites/NPM/resources/assets/sass/_variables.scss",
-		"/E/Sites/NPM/resources/assets/sass/ui/_forms.scss",
-		"/E/Sites/NPM/resources/assets/sass/ui/_buttons.scss",
-		"/E/Sites/NPM/resources/assets/js/ui/forms.js",
 		"/E/Sites/NPM/.env",
 		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Support/helpers.php",
 		"/E/Sites/NPM/config/app.php",
 		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php",
-		"/E/Sites/NPM/database/migrations/2017_10_14_124659_create_projects_table.php",
 		"/E/Sites/WWW/kugelschreiber/wp-config.php",
 		"/E/Sites/NPM/resources/lang/en/validation.php",
 		"/E/Sites/NPM/app/Project.php",
 		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
-		"/E/Sites/NPM/resources/views/pages/projects/edit.blade.php",
-		"/E/Sites/NPM/resources/views/pages/projects/create.blade.php",
-		"/E/Sites/NPM/resources/assets/sass/layout/_main.scss",
-		"/E/Sites/NPM/resources/assets/sass/_reset.scss",
-		"/E/Sites/NPM/resources/views/pages/projects/main.blade.php",
-		"/E/Sites/NPM/resources/assets/js/bootstrap.js",
 		"/C/Users/Alex/.ssh/known_hosts",
 		"/E/Sites/NPM/resources/assets/sass/layout/_nav-main.scss",
-		"/E/Sites/NPM/resources/assets/sass/layout/_nav-sec.scss",
-		"/E/Sites/NPM/resources/views/partials/nav-sec.blade.php",
 		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/User/phpcs.sublime-settings",
 		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/Phpcs/phpcs.sublime-settings",
 		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/Phpcs/Default (Windows).sublime-keymap",
 		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Http/RedirectResponse.php",
-		"/E/Sites/NPM/routes/web.php",
 		"/E/Sites/NPM/app/Providers/RouteServiceProvider.php",
-		"/E/Sites/NPM/resources/views/partials/nav-top.blade.php",
 		"/E/Sites/NPM/storage/framework/views/a56f463b05bb640f4d991cf2c01301fb8c3ba23c.php",
 		"/E/Sites/NPM/storage/framework/views/cec84b9d27bb1d52ac553bd88ad695cc870aa8c0.php",
-		"/E/Sites/NPM/resources/views/partials/nav-main.blade.php",
 		"/E/Sites/NPM/storage/framework/views/e54a0562ecae20e8204652b56b4ed5b2ed1c2478.php",
-		"/E/Sites/NPM/public/css/app.css",
 		"/E/Sites/NPM/public/js/app.js",
 		"/E/Sites/NPM/storage/framework/views/3931f906b3b8564acd9dc228481941a585d87d58.php",
 		"/E/Sites/NPM/app/Providers/EventServiceProvider.php",
@@ -532,7 +656,6 @@
 		"/E/Sites/NPM/public/svg/projects.svg",
 		"/E/Sites/WMS/composer.json",
 		"/E/Sites/NPM/webpack.mix.js",
-		"/E/Sites/NPM/resources/views/pages/dashboard.blade.php",
 		"/E/Sites/NPM/app/Providers/AppServiceProvider.php",
 		"/E/Sites/NPM/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php",
 		"/E/Sites/NPM/config/database.php",
@@ -562,41 +685,7 @@
 		"/E/Sites/WWW/luxurybuystoday/wp-content/plugins/wpr-dealers-location/src/hubspot-composer/vendor/autoload.php",
 		"/E/Sites/WWW/luxurybuystoday/wp-content/plugins/wpr-dealers-location/src/APIAutoloader.php",
 		"/E/Sites/WWW/luxurybuystoday/index.html",
-		"/E/Sites/WPRiders/Install/wp-content/themes/wpriders/functions.php",
-		"/E/Sites/WPRiders/Install/wp-content/themes/wpriders/wpr-drip-step1.php",
-		"/E/Sites/WPRiders/Install/wp-content/themes/wpriders/wpr-drip-step2.php",
-		"/E/Sites/WPRiders/Install/wp-content/themes/wpriders/wpr-drip-step3.php",
-		"/E/Sites/WPRiders/Install/functions.txt",
-		"/E/Sites/WPRiders/Install/acf_options_page.txt",
-		"/E/Sites/NPM/resources/views/partials/nav.main.blade.php",
-		"/E/Sites/NPM/resources/views/partials/nav_left.blade.php",
-		"/E/Sites/WWW/avra/wp-content/plugins/woocommerce/includes/widgets/class-wc-widget-product-categories.php",
-		"/E/Sites/Avra/Theme/sass/site/pages/_offers.scss",
-		"/E/Sites/Avra/Theme/sass/site/pages/_treatments.scss",
-		"/E/Sites/Avra/Theme/templates/contact.php",
-		"/E/Sites/Avra/Theme/template-parts/content-treatment.php",
-		"/E/Sites/Avra/Theme/templates/concept.php",
-		"/E/Sites/Avra/Theme/templates/homepage.php",
-		"/E/Sites/Avra/Theme/functions.php",
-		"/E/Sites/Avra/Theme/inc/woocommerce.php",
-		"/E/Sites/Avra/Theme/sass/elements/_products.scss",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/.htaccess",
-		"/E/Sites/Avra/Theme/sass/site/pages/_pages-main.scss",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/style.css",
-		"/E/Sites/Avra/Theme/footer.php",
-		"/E/Sites/Avra/Theme/inc/template-tags.php",
-		"/E/Sites/Avra/Theme/sass/site/pages/_woocommerce.scss",
-		"/E/Sites/Avra/Theme/sass/elements/_messages.scss",
-		"/E/Sites/Avra/Theme/js/src/3.init.js",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/template.conf",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/project.conf",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/project-banner.block",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/project.list",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/index.list",
-		"/C/Users/Alex/AppData/Local/Temp/fz3temp-2/site-bundle.js",
-		"/E/Tools/AutoHotKey/killActiveWindow.ahk",
-		"/E/Sites/WWW/avra/wp-content/plugins/woocommerce/assets/css/woocommerce.css",
-		"/E/Sites/Avra/Theme/templates/innovation.php"
+		"/E/Sites/WPRiders/Install/wp-content/themes/wpriders/functions.php"
 	],
 	"find":
 	{
@@ -607,6 +696,7 @@
 		"height": 109.0,
 		"where_history":
 		[
+			"*",
 			"*.php",
 			"",
 			"*.php",
@@ -634,6 +724,16 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"textarea",
+			"data-medium",
+			"$color-text",
+			"alert-success",
+			"button-submit",
+			"button-green",
+			"button-red",
+			"button-",
+			"alert-error",
+			"Sorry, the page you are looking for could not be found.",
 			"option",
 			"APP_URL",
 			"'",
@@ -751,17 +851,7 @@
 			"use xlink:href=\"#",
 			"item_remove",
 			"border",
-			"car_desc",
-			"tableopt",
-			"Thank you for your email",
-			"all ",
-			"checkvrcFields",
-			"COM_USERS_PROFILE_VALUE_NOT_FOUND",
-			"No Information Entered",
-			"new JDate(",
-			"$this->date",
-			"'dob'",
-			"$cfields"
+			"car_desc"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -769,6 +859,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"$text-color",
+			"-success",
+			"-submit",
+			"-green",
+			"-red",
+			"-",
+			"-error",
 			"li",
 			"nav-top-actions",
 			"nav-top-title",
@@ -807,86 +904,29 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/E/Sites/NPM/app/Http/Controllers/ProjectController.php",
+					"file": "/E/Sites/NPM/app/Core/helpers.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2864,
+						"buffer_size": 1128,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1596,
-								1596
+								413,
+								413
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 810.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/E/Sites/NPM/resources/views/partials/nav-sec.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 378,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								163,
-								163
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/E/Sites/NPM/resources/views/pages/projects/create.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1744,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								917,
-								934
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -896,48 +936,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/E/Sites/NPM/resources/assets/js/directives/send-value.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 389,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								150,
-								150
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
+					"buffer": 1,
 					"file": "/E/Sites/NPM/resources/assets/js/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1704,
+						"buffer_size": 1953,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1395,
-								1395
+								1944,
+								1944
 							]
 						],
 						"settings":
@@ -952,20 +964,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "/E/Sites/NPM/resources/views/pages/projects/edit.blade.php",
+					"buffer": 2,
+					"file": "/E/Sites/NPM/resources/views/pages/projects/show.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2019,
+						"buffer_size": 543,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								46,
-								46
+								29,
+								29
 							]
 						],
 						"settings":
@@ -976,29 +988,85 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "/E/Sites/NPM/resources/assets/js/ui/forms.js",
+					"buffer": 3,
+					"file": "/E/Sites/NPM/app/Http/Controllers/CategoryController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 261,
+						"buffer_size": 880,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								76,
-								76
+								732,
+								732
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/E/Sites/NPM/resources/views/pages/projects/index.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 857,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								620,
+								620
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/E/Sites/NPM/app/Category.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 812,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								789,
+								789
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1008,20 +1076,132 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "/E/Sites/NPM/resources/views/layouts/app.blade.php",
+					"buffer": 6,
+					"file": "/E/Sites/NPM/resources/views/pages/projects/create.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1056,
+						"buffer_size": 1996,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								942,
-								942
+								1984,
+								1984
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/E/Sites/NPM/resources/views/pages/projects/main.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 161,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								53,
+								53
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/E/Sites/NPM/app/Http/Controllers/ProjectController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3005,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1872,
+								1872
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/E/Sites/NPM/resources/views/pages/projects/edit.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2309,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2296,
+								2296
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/E/Sites/NPM/resources/views/pages/snippets/create.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2041,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2028,
+								2028
 							]
 						],
 						"settings":
@@ -1033,6 +1213,122 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/E/Sites/NPM/resources/views/pages/snippets/edit.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2309,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1984,
+								1984
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/E/Sites/NPM/resources/views/pages/snippets/category.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 763,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								763
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/E/Sites/NPM/resources/views/pages/projects/category.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 763,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4,
+								4
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "/E/Sites/NPM/routes/web.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 679,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								568,
+								568
+							],
+							[
+								640,
+								640
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
 					"type": "text"
 				}
 			]
@@ -1109,6 +1405,10 @@
 	{
 		"height": 0.0
 	},
+	"output.xdebug":
+	{
+		"height": 98.0
+	},
 	"pinned_build_system": "",
 	"project": "NPM.sublime-project",
 	"replace":
@@ -1122,6 +1422,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"helper",
+				"app\\Core\\helpers.php"
+			],
+			[
+				"alert",
+				"resources\\assets\\sass\\ui\\_alerts.scss"
+			],
 			[
 				"web",
 				"routes\\web.php"
@@ -1170,6 +1478,64 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"xdebug":
+		{
+			"restore_index":
+			{
+				"100":
+				{
+					"group": 0,
+					"index": 2
+				},
+				"104":
+				{
+					"group": 0,
+					"index": 3
+				},
+				"105":
+				{
+					"group": 0,
+					"index": 4
+				},
+				"107":
+				{
+					"group": 0,
+					"index": 5
+				},
+				"117":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"99":
+				{
+					"group": 0,
+					"index": 0
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
+		}
 	},
 	"show_minimap": true,
 	"show_open_files": true,

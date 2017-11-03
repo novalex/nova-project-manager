@@ -1,4 +1,10 @@
-@if ( View::hasSection('nav-top-head') || View::hasSection('nav-top-title') || View::hasSection('nav-top-actions') )
+@if (
+	View::hasSection('nav-top-head')
+	||
+	View::hasSection('nav-top-title')
+	||
+	View::hasSection('nav-top-actions')
+)
 	<nav id="nav-top">
 		@if ( View::hasSection('nav-top-head') )
 			<div id="nav-top-head">

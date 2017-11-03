@@ -34,5 +34,10 @@
 				font-size: 12px;
 			}
 		}
+
+		&.half a {
+			height: $nav-width / 2 - 0.5px;
+			padding: ( $content-padding / 2 ) $content-padding;
+		}
 	}
 }

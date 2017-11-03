@@ -51,3 +51,12 @@ table {
 a {
 	text-decoration: none;
 }
+
+a,
+button,
+.button,
+.editable {
+	&:focus {
+		outline: none;
+	}
+}

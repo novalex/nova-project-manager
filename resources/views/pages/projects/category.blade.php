@@ -1,7 +1,5 @@
 @php
-	$title = 'Manage projects';
-
-	$projects = App\Project::all();
+	$title = 'Manage ' . $category->name . ' projects';
 @endphp
 
 @extends('pages.projects.main')
@@ -15,21 +13,20 @@
 @endsection
 
 @section('content')
-	@if ( count( $projects ) )
+	@isset ( $posts )
 		<div class="content-grid">
-			@foreach ( $projects as $project )
+			@foreach ( $posts as $project )
 				<div class="grid-item">
 					<a href="{{ url( 'projects/' . $project['slug'] ) }}">
 						<strong class="title">{{ $project['name'] }}</strong>
-						<small class="subtitle">{{ get_category( $project->category_id ) }}</small>
 					</a>
 				</div>
 			@endforeach
 		</div>
 	@else
 		<div class="no-content">
-			<p>No projects created.</p>
+			<p>No projects in this folder.</p>
 			<a href="{{ url( 'projects/create' ) }}" class="button -green">Create a Project</a>
 		</div>
-	@endif
+	@endisset
 @endsection
