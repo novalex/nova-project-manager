@@ -266,7 +266,7 @@
 
 .medium-editor-element {
 	word-wrap: break-word;
-	min-height: 30px;
+	min-height: 200px;
 
 	img {
 		max-width: 100%;
@@ -290,33 +290,33 @@
 
 .medium-toolbar-arrow-under:after {
 	top: 50px;
-	border-color: $body-border transparent transparent transparent;
+	border-color: $nav-bg transparent transparent transparent;
 }
 
 .medium-toolbar-arrow-over:before {
 	top: -8px;
-	border-color: transparent transparent $body-border transparent;
+	border-color: transparent transparent $nav-border transparent;
 }
 
 .medium-editor-toolbar {
-	background-color: $body-bg;
-	border: 1px solid $body-border;
-	box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+	background-color: $nav-bg;
+	border: 1px solid $nav-border;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 
 	li {
 		button {
-			background-color: $body-bg;
+			background-color: $nav-bg;
 			border: 0;
-			border-right: 1px solid $body-border;
-			color: $text-color;
+			border-right: 1px solid $nav-border;
+			color: $nav-color;
 			height: 50px;
 			min-width: 50px;
 			-webkit-transition: background-color .2s ease-in;
 			transition: background-color .2s ease-in;
 
 			&:hover {
-				background-color: $body-bg-alt;
-				color: $text-color-fade;
+				background-color: $nav-bg-alt;
+				color: $nav-color-alt;
 			}
 		}
 
@@ -332,8 +332,8 @@
 		}
 
 		.medium-editor-button-active {
-			background-color: $body-bg-alt;
-			color: $text-color-fade;
+			background-color: $nav-bg-alt;
+			color: $nav-color-alt;
 		}
 	}
 }
@@ -341,26 +341,26 @@
 .medium-editor-toolbar-form {
 	border-radius: 5px;
 	color: #999;
-	background-color: $body-bg;
+	background-color: $nav-bg;
 
 	.medium-editor-toolbar-input {
 		height: 50px;
 		border: 0 !important;
-		background-color: $body-bg !important;
+		background-color: $nav-bg !important;
 	}
 
 	a {
-		color: $text-color;
+		color: $nav-color;
 	}
 }
 
 .medium-editor-toolbar-anchor-preview {
-	color: $text-color;
-	background-color: $body-bg-alt;
-	border: 1px solid $body-border;
+	color: $nav-color;
+	background-color: $nav-bg-alt;
+	border: 1px solid $nav-border;
 
 	a {
-		color: $text-color-fade;
+		color: $nav-color-alt;
 		font-size: 12px;
 	}
 }

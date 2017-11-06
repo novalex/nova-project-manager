@@ -1068,6 +1068,8 @@ menuItems.forEach(function (item) {
 
 window.Vue = __webpack_require__(42);
 
+Vue.config.ignoredElements = ['IfModule'];
+
 // Load directives.
 var directives = __webpack_require__(45);
 directives.keys().forEach(directives);
@@ -1083,8 +1085,6 @@ var app = new Vue({
 		navTopSubtitle: window.defaultData.navTopSubtitle || ''
 	}
 });
-
-Vue.config.ignoredElements = ['IfModule'];
 
 /***/ }),
 /* 12 */
@@ -37458,10 +37458,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-	$('pre code').each(function (i, block) {
-		hljs.highlightBlock(block);
-	});
-
 	if (typeof MediumEditor !== 'undefined') {
 		var editor = new MediumEditor('.editable', {
 			toolbar: {
@@ -37484,14 +37480,11 @@ $(document).ready(function () {
 			extensions: {
 				'code': new MediumButton({
 					label: 'Code',
-					start: '<pre><code>',
-					end: '</code></pre>',
+					start: '<small class="code-delimiter">code</small>',
+					end: '<small class="code-delimiter">/code</small>',
 					action: function action(html, mark, parent) {
 						if (mark) {
-							var lang = prompt('Language:');
-							if (lang) {
-								return '<!--' + html + '-->' + html.replace(/<pre><code>/g, '').replace(/<\/pre><\/code>/g, '').replace(/<\/div><div>/g, "\n").replace(/<\/p><p>/g, "\n").replace(/</g, "<").replace(/>/g, ">");
-							}
+							return '<!--' + html + '--><pre class="hljs-wrap"><code class="hljs">' + html.replace(/<pre class="hljs-wrap"><code class="hljs">/g, '').replace(/<\/pre><\/code>/g, '').replace(/<\/div><div>/g, "\n").replace(/<\/p><p>/g, "\n").replace(/</g, "<").replace(/>/g, ">") + '</code></pre>';
 						}
 						return html.split('-->')[0].split('<!--').join('');
 					}
@@ -37499,10 +37492,16 @@ $(document).ready(function () {
 			}
 		});
 
-		$('.medium-editor-element pre code').each(function (i, block) {
-			hljs.highlightBlock(block);
+		editor.subscribe('editableBlur', function (data, editable) {
+			$('pre code', editable).each(function (i, block) {
+				hljs.highlightBlock(block);
+			});
 		});
 	}
+
+	$('pre code').each(function (i, block) {
+		hljs.highlightBlock(block);
+	});
 });
 
 /***/ }),

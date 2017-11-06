@@ -57,6 +57,11 @@
 						@endforeach
 					</datalist>
 				</div>
+
+				<div class="fieldset">
+					<label for="create_directory">Create Directory</label>
+					<input type="checkbox" id="create_directory" name="create_directory" value="1" {{ ( old('create_directory') == '1' ) ? 'checked' : '' }}>
+				</div>
 			</div>
 
 			<div class="fieldgroup -post-content">

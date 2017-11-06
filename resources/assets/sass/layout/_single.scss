@@ -1,0 +1,14 @@
+.single-content {
+	.code-delimiter { display: none; }
+}
+
+.single-edit {
+	.code-delimiter { display: block; }
+}
+
+.single-content,
+.single-edit {
+	max-width: $width-large;
+	margin-left: auto;
+	margin-right: auto;
+}

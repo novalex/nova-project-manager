@@ -46,4 +46,12 @@ pre {
 		padding: $content-padding;
 		background: #232323;
 	}
+
+	&.hljs-wrap {
+		font-size: 0;
+
+		code.hljs {
+			font-size: 12px;
+		}
+	}
 }

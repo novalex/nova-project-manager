@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class ProjectController extends Controller {
 
 	/**
@@ -39,9 +42,30 @@ class ProjectController extends Controller {
 			'category' => 'alpha',
 		]);
 
+		$slug = empty( $request->slug ) ? str_slug( $request->name ) : str_slug( $request->slug );
+
+		if ( isset( $request->create_directory ) && $request->create_directory ) {
+			$dir_path = '/mnt/e/Sites/WWW';
+
+			$process = new Process( "bash && cd $dir_path && mkdir $slug" );
+			$process->run();
+
+			if ( ! $process->isSuccessful() ) {
+				return redirect()->back()->withInput()->with(
+					[
+						'status'  => 'error',
+						'message' => [
+							"Could not create directory $dir_path/$slug.",
+							$process->getErrorOutput()
+						]
+					]
+				);
+			}
+		}
+
 		$project = Project::create([
 			'name'        => $request->name,
-			'slug'        => empty( $request->slug ) ? str_slug( $request->name ) : str_slug( $request->slug ),
+			'slug'        => $slug,
 			'body'        => $request->body,
 			'category_id' => get_category_id( $request->category, 'project' ),
 		]);
@@ -89,9 +113,11 @@ class ProjectController extends Controller {
 			'category' => 'alpha',
 		]);
 
+		$slug = empty( $request->slug ) ? str_slug( $request->name ) : str_slug( $request->slug );
+
 		$project->update([
 			'name'        => $request->name,
-			'slug'        => empty( $request->slug ) ? str_slug( $request->name ) : str_slug( $request->slug ),
+			'slug'        => $slug,
 			'body'        => $request->body,
 			'category_id' => get_category_id( $request->category, 'project' ),
 		]);

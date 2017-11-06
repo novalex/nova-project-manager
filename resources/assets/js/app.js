@@ -72,6 +72,8 @@ menuItems.forEach( function( item ) {
 
 window.Vue = require( 'vue' );
 
+Vue.config.ignoredElements = ['IfModule'];
+
 // Load directives.
 var directives = require.context( './directives', true, /^(.*\.(js$))[^.]*$/i );
 directives.keys().forEach( directives );
@@ -87,5 +89,3 @@ const app = new Vue( {
 		navTopSubtitle: window.defaultData.navTopSubtitle || '',
 	}
 } );
-
-Vue.config.ignoredElements = ['IfModule'];
