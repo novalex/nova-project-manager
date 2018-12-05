@@ -10,7 +10,7 @@
 @extends('pages.snippets.main')
 
 @section('nav-top-title')
-	<transition appear>
+	<transition name="appear">
 		<strong v-if="navTopTitle">Edit "@{{ navTopTitle }}"</strong>
 		<strong v-else>{{ $title }}</strong>
 	</transition>
@@ -67,7 +67,8 @@
 			<div class="fieldgroup -post-content">
 				<div class="fieldset">
 					<label for="body">Content</label>
-					<textarea id="body" name="body" rows="12" class="editable">{{ $snippet->body }}</textarea>
+					<editor el-id="body" name="body" rows="12" content="{{ $snippet->body }}"></editor>
+					<!-- <textarea id="body" name="body" rows="12" class="editable">{{ $snippet->body }}</textarea> -->
 				</div>
 			</div>
 

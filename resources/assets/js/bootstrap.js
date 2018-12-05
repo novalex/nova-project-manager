@@ -17,6 +17,26 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+// Vue
+window.Vue = require( 'vue' );
+Vue.config.ignoredElements = ['IfModule'];
+
+// Load directives.
+var directives = require.context( './directives', true, /^(.*\.(js$))[^.]*$/i );
+directives.keys().forEach( directives );
+
+// Load components.
+Vue.component( 'editor', require( './components/Editor.vue' ) );
+
+const app = new Vue( {
+	el: '#app',
+
+	data: {
+		navTopTitle: window.defaultData.navTopTitle || '',
+		navTopSubtitle: window.defaultData.navTopSubtitle || '',
+	}
+});
+
 // import Echo from 'laravel-echo'
 
 // window.Pusher = require('pusher-js');

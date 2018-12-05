@@ -1,5 +1,6 @@
 // jshint esversion: 6
 
+//
 require( './bootstrap' );
 
 // Plugins
@@ -12,9 +13,7 @@ require( './ui/forms' );
 require( './ui/actions' );
 require( './ui/editor' );
 
-
 // Barba.js PJAX
-
 Barba = require( '../../../node_modules/barba.js/dist/barba.js' );
 
 var FadeTransition = Barba.BaseTransition.extend( {
@@ -39,21 +38,30 @@ var FadeTransition = Barba.BaseTransition.extend( {
 			opacity: 0
 		} );
 
-		$el.animate( { opacity: 1 }, 400, function() {
+		$el.animate( { opacity: 1 }, 100, function() {
 			_this.done();
 		} );
 	}
 } );
 
-// Barba.Pjax.getTransition = function() {
-// 	return FadeTransition;
-// };
+Barba.Pjax.getTransition = function() {
+	return FadeTransition;
+};
+
+Barba.BaseTransition.done = function() {
+	this.oldContainer.parentNode.removeChild(this.oldContainer);
+	this.newContainer.style.visibility = 'visible';
+	this.deferred.resolve();
+
+	initVueApp();
+};
 
 Barba.Pjax.Dom.containerClass = 'app-container';
 Barba.Pjax.Dom.wrapperId = 'app';
 // Barba.Pjax.start();
 // Barba.Prefetch.init();
 
+// Menu navigation.
 var navigation = document.querySelector( '#nav-main-menu' );
 menuItems = navigation.querySelectorAll( '.menu-item' );
 
@@ -65,27 +73,4 @@ menuItems.forEach( function( item ) {
 
 		item.classList.add( 'active' );
 	} );
-} );
-
-
-// Vue
-
-window.Vue = require( 'vue' );
-
-Vue.config.ignoredElements = ['IfModule'];
-
-// Load directives.
-var directives = require.context( './directives', true, /^(.*\.(js$))[^.]*$/i );
-directives.keys().forEach( directives );
-
-// Load components.
-Vue.component( 'example', require( './components/Example.vue' ) );
-
-const app = new Vue( {
-	el: '#app',
-
-	data: {
-		navTopTitle: window.defaultData.navTopTitle || '',
-		navTopSubtitle: window.defaultData.navTopSubtitle || '',
-	}
-} );
+});

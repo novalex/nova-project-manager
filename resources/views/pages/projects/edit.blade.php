@@ -10,7 +10,7 @@
 @extends('pages.projects.main')
 
 @section('nav-top-title')
-	<transition appear>
+	<transition name="appear">
 		<strong v-if="navTopTitle">Edit "@{{ navTopTitle }}"</strong>
 		<strong v-else>{{ $title }}</strong>
 	</transition>
