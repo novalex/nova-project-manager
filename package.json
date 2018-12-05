@@ -19,7 +19,7 @@
         "vue": "^2.5.16"
     },
     "dependencies": {
-        "browser-sync": "^2.24.5",
+        "browser-sync": "^2.26.3",
         "browser-sync-webpack-plugin": "^1.2.0"
     }
 }

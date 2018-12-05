@@ -7,13 +7,13 @@
 
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-		<title>{{ $title }} - NPM</title>
+		<title>{{ $title }} - {{ config( 'app.name' ) }}</title>
 
 		<link href="/css/app.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		@include('partials.nav-main')
-		
+
 		<div id="app">
 			<div class="app-container">
 				@include('partials.alert')
@@ -33,7 +33,7 @@
 		</script>
 
 		<script type="text/javascript" src="/js/app.js"></script>
-		
+
 		@yield('scripts')
 	</body>
 </html>

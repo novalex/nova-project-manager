@@ -1104,6 +1104,7 @@ textarea:focus {
   text-align: center;
   line-height: inherit;
   border: 1px solid #dbdbdb;
+  border-radius: 3px;
   background-color: #f4f4f4;
   -webkit-transition: background-color 0.2s, color 0.2s, border 0.2s, -webkit-box-shadow 0.2s;
   transition: background-color 0.2s, color 0.2s, border 0.2s, -webkit-box-shadow 0.2s;

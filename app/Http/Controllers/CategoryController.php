@@ -22,7 +22,8 @@ class CategoryController extends Controller {
 	/**
 	 * Display a category folder by type.
 	 *
-	 * @param  string $category
+	 * @param string $type
+	 * @param string $category
 	 * @return \Illuminate\Http\Response
 	 */
 	public function type_index( $type, Category $category ) {
