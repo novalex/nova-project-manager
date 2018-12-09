@@ -10,10 +10,11 @@
 @extends('pages.projects.main')
 
 @section('nav-top-title')
-	<transition name="appear">
-		<strong v-if="navTopTitle">Edit "@{{ navTopTitle }}"</strong>
-		<strong v-else>{{ $title }}</strong>
-	</transition>
+	@if ( $project->name )
+		Edit {{ $project->name }}
+	@else
+		{{ $title }}
+	@endif
 @endsection
 
 @section('nav-top-actions')
@@ -67,7 +68,7 @@
 			<div class="fieldgroup -post-content">
 				<div class="fieldset">
 					<label for="body">Content</label>
-					<textarea id="body" name="body" rows="12" class="editable">{{ $project->body }}</textarea>
+					<editor el-id="body" name="body" rows="12" content="{{ $project->body }}"></editor>
 				</div>
 			</div>
 

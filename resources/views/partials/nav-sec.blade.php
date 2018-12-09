@@ -6,7 +6,7 @@
 				if ( isset( $item['class'] ) ) {
 					$class .= $item['class'];
 				}
-				if ( \Request::is( [ $item['url'], $item['url'] . '/*' ] ) ) {
+				if ( \Request::is( [ $item['url'], $item['url'] . '/' ] ) ) {
 					$class .= ' active';
 				}
 			@endphp

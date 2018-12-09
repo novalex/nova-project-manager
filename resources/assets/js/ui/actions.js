@@ -1,4 +1,4 @@
-$(document).ready( function() {
+document.addEventListener( 'app.ready', function() {
 
 	// Delete
 	$('.action-delete').on('click', function( e ) {

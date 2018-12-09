@@ -1,4 +1,4 @@
-$(document).ready( function() {
+document.addEventListener( 'app.ready', function() {
 
 	// Input filters.
 	$('.filter-slug').on( 'change blur', function( e ) {

@@ -25,6 +25,7 @@
 	}
 }
 
+// Grid display.
 .content-grid {
 	display: flex;
 	flex-grow: 1;
@@ -70,5 +71,12 @@
 		.subtitle {
 			color: $text-color-fade;
 		}
+	}
+}
+
+// Posts.
+#post-body {
+	> p {
+		margin-bottom: $content-padding;
 	}
 }

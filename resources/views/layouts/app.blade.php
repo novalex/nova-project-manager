@@ -15,6 +15,7 @@
 		@include('partials.nav-main')
 
 		<div id="app">
+
 			<div class="app-container">
 				@include('partials.alert')
 
@@ -25,12 +26,14 @@
 				<div id="content" class="container">
 					@yield('content')
 				</div>
-			</div>
-		</div>
 
-		<script type="text/javascript">
-			window.defaultData = {!! isset( $defaultData ) ? $defaultData : '{}' !!};
-		</script>
+				<div id="app-data">
+					{!! isset( $defaultData ) ? $defaultData : '{}' !!}
+				</div>
+
+			</div>
+
+		</div>
 
 		<script type="text/javascript" src="/js/app.js"></script>
 

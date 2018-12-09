@@ -1,76 +1,65 @@
 // jshint esversion: 6
 
-//
-require( './bootstrap' );
+// Helpers.
+const { triggerEvent } = require( './inc/helpers' );
 
-// Plugins
-window.hljs = require( './plugins/highlight' );
-MediumButton = require( './plugins/medium-button' );
-MediumEditor = require( './plugins/medium-editor' );
+window._ = require('lodash');
 
-// UI
+try {
+    window.$ = window.jQuery = require('jquery');
+} catch (e) {}
+
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+// UI.
 require( './ui/forms' );
 require( './ui/actions' );
 require( './ui/editor' );
+require( './ui/navigation' );
 
-// Barba.js PJAX
-Barba = require( '../../../node_modules/barba.js/dist/barba.js' );
+// Vue
+window.Vue = require( 'vue' );
+Vue.config.ignoredElements = ['IfModule'];
 
-var FadeTransition = Barba.BaseTransition.extend( {
-	start: function() {
-		Promise
-			.all( [ this.newContainerLoading, this.fadeOut() ] )
-			.then( this.fadeIn.bind( this ) );
-	},
+// Load directives.
+var directives = require.context( './directives', true, /^(.*\.(js$))[^.]*$/i );
+directives.keys().forEach( directives );
 
-	fadeOut: function() {
-		return $( this.oldContainer ).animate( { opacity: 0 } ).promise();
-	},
+// Load components.
+Vue.component( 'editor', require( './components/Editor.vue' ) );
 
-	fadeIn: function() {
-		var _this = this;
-		var $el = $( this.newContainer );
+window.initApp = function() {
+	const appData = JSON.parse( document.getElementById( 'app-data' ).innerHTML );
 
-		$( this.oldContainer ).hide();
+	new Vue( {
+		el: '#app',
 
-		$el.css( {
-			visibility: 'visible',
-			opacity: 0
-		} );
+		data: {
+			navTopTitle: appData.navTopTitle || '',
+			navTopSubtitle: appData.navTopSubtitle || '',
+		}
+	});
 
-		$el.animate( { opacity: 1 }, 100, function() {
-			_this.done();
-		} );
-	}
-} );
+	triggerEvent( document, 'app.ready' );
+}
 
-Barba.Pjax.getTransition = function() {
-	return FadeTransition;
-};
+initApp();
 
-Barba.BaseTransition.done = function() {
-	this.oldContainer.parentNode.removeChild(this.oldContainer);
-	this.newContainer.style.visibility = 'visible';
-	this.deferred.resolve();
+// import Echo from 'laravel-echo'
 
-	initVueApp();
-};
+// window.Pusher = require('pusher-js');
 
-Barba.Pjax.Dom.containerClass = 'app-container';
-Barba.Pjax.Dom.wrapperId = 'app';
-// Barba.Pjax.start();
-// Barba.Prefetch.init();
-
-// Menu navigation.
-var navigation = document.querySelector( '#nav-main-menu' );
-menuItems = navigation.querySelectorAll( '.menu-item' );
-
-menuItems.forEach( function( item ) {
-	item.addEventListener( 'click', function() {
-		menuItems.forEach( function( itemi ) {
-			itemi.classList.remove( 'active' );
-		} );
-
-		item.classList.add( 'active' );
-	} );
-});
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: 'your-pusher-key'
+// });

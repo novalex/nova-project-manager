@@ -15,4 +15,9 @@ mix.js('resources/assets/js/app.js', 'public/js');
 
 mix.sass('resources/assets/sass/app.scss', 'public/css');
 
-mix.browserSync('npm.nov');
+mix.browserSync({
+	proxy: 'npm.nov',
+	snippetOptions: {
+		whitelist: ["/**"],
+	},
+});

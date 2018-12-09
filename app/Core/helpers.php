@@ -62,6 +62,14 @@ function get_categories_menu( $type, $args = [] ) {
 	$categories = get_categories( $type );
 
 	if ( $categories ) {
+		$items[] = array_merge(
+			[
+				'name' => __( 'All' ),
+				'url'  => str_plural( $type ),
+			],
+			$args
+		);
+
 		foreach ( $categories as $category ) {
 			$items[] = array_merge(
 				[
