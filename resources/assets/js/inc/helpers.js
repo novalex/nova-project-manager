@@ -1,5 +1,4 @@
 function triggerEvent( el, type ) {
-	console.log( 'Triggering event' );
 	if ('createEvent' in document) {
 		// modern browsers, IE9+
 		var e = document.createEvent('HTMLEvents');

@@ -1,20 +1,7 @@
-@php
-	$title = 'Edit "' . $snippet->name . '"';
-
-	$defaultData = json_encode([
-		'navTopTitle' => $snippet->name,
-		'navTopSubtitle' => $snippet->slug,
-	]);
-@endphp
-
 @extends('pages.snippets.main')
 
 @section('nav-top-title')
-	@if ( $snippet->name )
-		Edit {{ $snippet->name }}
-	@else
-		{{ $title }}
-	@endif
+	{{ $title }}
 @endsection
 
 @section('nav-top-actions')

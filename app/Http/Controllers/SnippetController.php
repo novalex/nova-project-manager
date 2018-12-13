@@ -13,25 +13,11 @@ class SnippetController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view( 'pages.snippets.index' );
-	}
+		$title = __( 'Manage snippets' );
 
-	/**
-	 * Display a snippets folder.
-	 *
-	 * @param  string $folder
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index_folder( $_folder ) {
-		$folders = \DB::table('snippets')->distinct()->pluck('folder');
-		foreach ( $folders as $folder ) {
-			if ( str_slug( $folder ) == $_folder ) {
-				$snippets = Snippet::get()->where( 'folder', $folder );
-			} else {
-				$folder = $_folder;
-			}
-		}
-		return view( 'pages.snippets.folder', compact( 'folder', 'snippets' ) );
+		$snippets = Snippet::all();
+
+		return view( 'pages.snippets.index', compact( 'title', 'snippets' ) );
 	}
 
 	/**
@@ -79,7 +65,12 @@ class SnippetController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show( Snippet $snippet ) {
-		return view( 'pages.snippets.show', compact( 'snippet' ) );
+		$title = $snippet->name;
+
+		$Parsedown = new \Parsedown();
+		$content   = $Parsedown->text( $snippet->body );
+
+		return view( 'pages.snippets.show', compact( 'snippet', 'title', 'content' ) );
 	}
 
 	/**
@@ -89,7 +80,14 @@ class SnippetController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit( Snippet $snippet ) {
-		return view( 'pages.snippets.edit', compact( 'snippet' ) );
+		$title = 'Edit "' . $snippet->name . '"';
+
+		$defaultData = json_encode([
+			'navTopTitle' => $snippet->name,
+			'navTopSubtitle' => $snippet->slug,
+		]);
+
+		return view( 'pages.snippets.edit', compact( 'snippet', 'title', 'defaultData' ) );
 	}
 
 	/**

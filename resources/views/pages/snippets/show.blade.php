@@ -1,11 +1,3 @@
-@php
-	$title = $snippet->name;
-
-	$Parsedown = new Parsedown();
-
-	$content = $Parsedown->text( $snippet->body );
-@endphp
-
 @extends('pages.snippets.main')
 
 @section('nav-top-title')

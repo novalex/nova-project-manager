@@ -43,6 +43,7 @@
 			padding: 20px 15px;
 			max-height: 100px;
 			border: 1px solid $body-border;
+			border-radius: $border-radius;
 			background-color: $body-bg;
 			box-shadow: 0 0 0 transparent;
 			transition: background-color 0.3s, box-shadow 0.3s;
@@ -75,8 +76,24 @@
 }
 
 // Posts.
-#post-body {
-	> p {
-		margin-bottom: $content-padding;
+#post-body,
+.editor-preview {
+	> p,
+	> ol,
+	> ul {
+		margin-bottom: $content-padding / 2;
+	}
+
+	ol,
+	ul {
+		list-style-position: inside;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	ol {
+		list-style-type: decimal;
 	}
 }

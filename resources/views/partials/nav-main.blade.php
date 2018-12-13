@@ -4,7 +4,29 @@
 	</a>
 
 	@php
-		$menu_items = App\Menu::all();
+		$default_menu_items = array(
+			array(
+				'url'     => '/',
+				'name'    => __( 'Dashboard' ),
+				'options' => '{ "icon": "fas fa-bars" }',
+			),
+			array(
+				'url'     => '/settings',
+				'name'    => __( 'Settings' ),
+				'options' => '{ "icon": "fas fa-cog" }',
+			),
+		);
+
+		$custom_menu_items = App\Menu::all();
+
+		if ( ! count( $custom_menu_items ) ) {
+			$custom_menu_items = array();
+		}
+
+		$menu_items = array_merge(
+			$default_menu_items,
+			$custom_menu_items
+		);
 	@endphp
 
 	@if ( count( $menu_items ) )
@@ -15,7 +37,11 @@
 
 					$icon = '';
 					if ( isset( $options['icon'] ) ) {
-						$icon = '<img src="' . asset( 'svg/' . $options['icon'] ) . '" alt="Icon">';
+						// FA icon.
+						$icon = '<span class="icon ' . $options['icon'] . '"></span>';
+					} elseif ( isset( $options['img'] ) ) {
+						// Image icon.
+						$icon = '<img class="icon" src="' . asset( 'svg/' . $options['img'] ) . '" alt="Icon">';
 					}
 				@endphp
 				<li class="menu-item{{ ( \Request::is([ $item['url'], $item['url'] . '/*' ]) ) ? ' active' : '' }}">

@@ -16,6 +16,7 @@ function get_category( $id ) {
  * Generate a category by name or return existing category's ID.
  *
  * @param string $name The category name.
+ * @param string $type The category type.
  * @return int The category ID.
  */
 function get_category_id( $name, $type = null ) {
@@ -30,9 +31,11 @@ function get_category_id( $name, $type = null ) {
 		return $category->id;
 	} else {
 		$category->slug = str_slug( $name );
+
 		if ( $type ) {
 			$category->type = $type;
 		}
+
 		$category->save();
 
 		return $category->id;
@@ -42,7 +45,7 @@ function get_category_id( $name, $type = null ) {
 /**
  * Get categories by type.
  *
- * @param  string $type
+ * @param string $type The category type.
  * @return mixed
  */
 function get_categories( $type ) {

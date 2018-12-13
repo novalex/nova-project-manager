@@ -1,6 +1,3 @@
-@php
-	$title = 'Manage ' . $category->name . ' snippets';
-@endphp
 
 @extends('pages.snippets.main')
 
@@ -9,7 +6,7 @@
 @endsection
 
 @section('nav-top-actions')
-	<a href="{{ url( 'snippets/create' ) }}" class="button -green">Create Snippet</a>
+	<a href="{{ url( 'snippets/create' ) }}" class="button -green">{{ __( 'Create Snippet' ) }}</a>
 @endsection
 
 @section('content')
@@ -25,8 +22,8 @@
 		</div>
 	@else
 		<div class="no-content">
-			<p>No snippets in this folder.</p>
-			<a href="{{ url( 'snippets/create' ) }}" class="button -green">Create a Snippet</a>
+			<p>{{ __( 'No snippets in this folder.' ) }}</p>
+			<a href="{{ url( 'snippets/create' ) }}" class="button -green">{{ __( 'Create a Snippet' ) }}</a>
 		</div>
 	@endisset
 @endsection

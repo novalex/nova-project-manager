@@ -15,22 +15,29 @@ class CategoryController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index( Category $category ) {
+		$title = 'Manage ' . $category->name . ' caca';
+
 		$posts = $category->posts( $category->id );
-		return view( 'pages.snippets.category', compact( 'category', 'posts' ) );
+
+		return view( 'pages.snippets.category', compact( 'title', 'category', 'posts' ) );
 	}
 
 	/**
 	 * Display a category folder by type.
 	 *
-	 * @param string $type
-	 * @param string $category
+	 * @param string $type     The category type.
+	 * @param string $category The category.
 	 * @return \Illuminate\Http\Response
 	 */
 	public function type_index( $type, Category $category ) {
+		$title = "Manage $category->name $type";
+
 		if ( $category->type !== $type ) {
 			$category = Category::where([ [ 'slug', $category->slug ], [ 'type', str_singular($type) ] ])->first();
 		}
+
 		$posts = $category->$type( $category->id );
-		return view( 'pages.' . $type . '.category', compact( 'category', 'posts' ) );
+
+		return view( 'pages.' . $type . '.category', compact( 'title', 'category', 'posts' ) );
 	}
 }

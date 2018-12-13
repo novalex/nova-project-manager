@@ -11,7 +11,9 @@
 |
 */
 
-Route::view( '/', 'pages.dashboard' );
+Route::view( '/', 'pages.dashboard', [ 'title' => __( 'Dashboard' ) ] );
+
+Route::view( '/settings', 'pages.settings', [ 'title' => __( 'Settings' ) ] );
 
 Route::resource( 'projects', 'ProjectController' );
 

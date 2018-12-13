@@ -30,6 +30,7 @@
 		font-size: 12px;
 		text-align: center;
 		border-bottom: 1px solid $nav-border;
+		background-color: $nav-bg;
 		transition: color 0.2s, background-color 0.2s;
 
 		a {
@@ -39,16 +40,23 @@
 			padding: 20px 5px 10px;
 		}
 
-		img {
+		.icon {
 			display: block;
+			font-size: $nav-icon-width;
 			margin: 0 auto 10px;
 			width: $nav-icon-width;
+			opacity: 0.8;
+			transition: opacity 0.2s;
 		}
 
 		&:hover,
 		&.active {
 			color: $nav-color-alt;
 			background-color: $nav-bg-alt;
+
+			.icon {
+				opacity: 1;
+			}
 		}
 	}
 }

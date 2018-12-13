@@ -1,8 +1,3 @@
-@php
-	$title = 'Manage snippets';
-
-	$snippets = App\Snippet::all();
-@endphp
 
 @extends('pages.snippets.main')
 

@@ -4,15 +4,12 @@ const SimpleMDE = require( '../plugins/simplemde' );
 
 document.addEventListener( 'app.ready', function() {
 
-	console.log( 'editor init' );
-
 	// Markdown editor.
 	const editor = document.getElementById( 'body' );
 
 	if ( editor ) {
 		new SimpleMDE({
 			element: editor,
-			spellChecker: false,
 			renderingConfig: {
 				codeSyntaxHighlighting: true,
 			},
