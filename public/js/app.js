@@ -29495,6 +29495,7 @@ document.addEventListener('app.ready', function () {
 	if (editor) {
 		new SimpleMDE({
 			element: editor,
+			spellChecker: false,
 			renderingConfig: {
 				codeSyntaxHighlighting: true
 			}
