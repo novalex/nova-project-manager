@@ -15,13 +15,17 @@ class AdminPostController extends PostController {
 	public function __construct() {
 		new AdminController();
 
-		parent::__construct();
-
 		$this->url = 'admin/posts';
 
 		$this->views['index'] = 'pages.admin.posts';
 
-		\View::share( 'post_types', PostType::all() );
+		$post_types = PostType::all();
+		if ( empty( $post_types ) ) {
+			$post_types = array();
+		}
+		\View::share( 'post_types', $post_types );
+
+		parent::__construct();
 	}
 
 }

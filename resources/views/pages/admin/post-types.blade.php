@@ -6,30 +6,8 @@
 @endsection
 
 @switch( $action )
-	@case( 'index' )
-		@section('nav-top-actions')
-			<a href="{{ url( "$url/create " ) }}" class="button -green">{{ __( 'New Post Type' ) }}</a>
-		@endsection
 
-		@section('content')
-			@if ( count( $post_types ) )
-				<div class="content-list -grid">
-					@foreach ( $post_types as $post_type )
-						<div class="item">
-							<div>
-								<strong class="title">{{ $post_type['name'] }}</strong>
-							</div>
-						</div>
-					@endforeach
-				</div>
-			@else
-				<div class="no-content">
-					<p>{{ __( 'No post types created.' ) }}</p>
-				</div>
-			@endif
-		@endsection
-
-		@break
+	{{-- Create --}}
 	@case( 'create' )
 		@section('nav-top-actions')
 			<a href="{{ url( $url ) }}" class="button">{{ __( 'Cancel' ) }}</a>
@@ -71,6 +49,30 @@
 		@endsection
 
 		@break
+
+	{{-- Index --}}
 	@default
+
+		@section('nav-top-actions')
+			<a href="{{ url( "$url/create " ) }}" class="button -green">{{ __( 'New Post Type' ) }}</a>
+		@endsection
+
+		@section('content')
+			@if ( count( $post_types ) )
+				<div class="content-list -grid">
+					@foreach ( $post_types as $post_type )
+						<div class="item">
+							<div>
+								<strong class="title">{{ $post_type['name'] }}</strong>
+							</div>
+						</div>
+					@endforeach
+				</div>
+			@else
+				<div class="no-content">
+					<p>{{ __( 'No post types created.' ) }}</p>
+				</div>
+			@endif
+		@endsection
 
 @endswitch

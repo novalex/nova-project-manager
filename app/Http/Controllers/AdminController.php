@@ -28,10 +28,15 @@ class AdminController extends Controller {
 				'name'    => __( 'Menus' ),
 				'class'   => 'half' . ( \Request::is( [ 'admin/menus', 'admin/menus/*' ] ) ? ' active' : '' ),
 			),
+			// array(
+			// 	'url'     => 'admin/posts',
+			// 	'name'    => __( 'Posts' ),
+			// 	'class'   => 'half' . ( \Request::is( [ 'admin/posts', 'admin/posts/*' ] ) ? ' active' : '' ),
+			// ),
 			array(
-				'url'     => 'admin/posts',
-				'name'    => __( 'Posts' ),
-				'class'   => 'half' . ( \Request::is( [ 'admin/posts', 'admin/posts/*' ] ) ? ' active' : '' ),
+				'url'     => 'admin/post-types',
+				'name'    => __( 'Post Types' ),
+				'class'   => 'half' . ( \Request::is( [ 'admin/post-types', 'admin/post-types/*' ] ) ? ' active' : '' ),
 			),
 			array(
 				'url'     => 'admin/users',

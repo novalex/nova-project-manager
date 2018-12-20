@@ -26,13 +26,15 @@ Route::prefix( 'admin' )->group( function() {
 Route::view( '/', 'pages.dashboard', array( 'title' => __( 'Dashboard' ) ) );
 
 // Create post type routes.
-$post_types = PostType::all();
-foreach ( $post_types as $post_type ) {
-	Route::resource( $post_type['url'], 'PostTypeController', array(
-		'parameters' => array(
-			$post_type['url'] => 'post',
-		)
-	) );
+if ( Schema::hasTable('post_types') ) {
+	$post_types = PostType::all();
+	foreach ( $post_types as $post_type ) {
+		Route::resource( $post_type['url'], 'PostTypeController', array(
+			'parameters' => array(
+				$post_type['url'] => 'post',
+			)
+		) );
+	}
 }
 
 // Route::get( 'category/{category}', 'CategoryController@index' );

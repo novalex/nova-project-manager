@@ -6,8 +6,8 @@
 @endsection
 
 @section('nav-top-actions')
-	<a href="/posts/{{ $post->slug }}" class="button">{{ __( 'Cancel' ) }}</a>
-	<form method="POST" action="/posts/{{ $post->slug }}">
+	<a href="{{ url( "{$url['index']}/{$post->slug}" ) }}" class="button">{{ __( 'Cancel' ) }}</a>
+	<form method="POST" action="{{ url( "{$url['index']}/{$post->slug}" ) }}">
 		{{ csrf_field() }}
 		{{ method_field( 'DELETE' ) }}
 		<button class="button -red action-delete">{{ __( 'Delete' ) }}</button>
@@ -27,7 +27,7 @@
 			</div>
 		@endif
 
-		<form method="POST" id="form-edit" name="form-edit" action="/posts/{{ $post->slug }}">
+		<form method="POST" id="form-edit" name="form-edit" action="{{ url( "{$url['index']}/{$post->slug}" ) }}">
 			<div class="fieldgroup -post-meta">
 				<div class="fieldset">
 					<label for="name">{{ __( 'Name' ) }}</label>

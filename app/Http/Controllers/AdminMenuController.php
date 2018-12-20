@@ -41,9 +41,9 @@ class AdminMenuController extends AdminController {
 	public function __construct() {
 		$route = Route::current();
 		$route_action = $route ? $route->getActionMethod() : 'index';
+		\View::share( 'action', $route_action );
 
 		\View::share( 'url', $this->url );
-		\View::share( 'action', $route_action );
 
 		parent::__construct();
 	}

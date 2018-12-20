@@ -15,7 +15,10 @@ class PostController extends Controller {
 	 *
 	 * @var string
 	 */
-	public $post_type = 'post';
+	public $post_type = array(
+		'slug' => 'post',
+		'id'   => 0,
+	);
 
 	/**
 	 * Array of strings describing the resource.
