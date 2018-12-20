@@ -27,9 +27,7 @@
 					@yield('content')
 				</div>
 
-				<div id="app-data">
-					{!! isset( $defaultData ) ? $defaultData : '{}' !!}
-				</div>
+				<div id="app-data">{{ isset( $defaultData ) ? $defaultData : '{}' }}</div>
 
 			</div>
 

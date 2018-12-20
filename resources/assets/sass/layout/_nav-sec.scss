@@ -1,7 +1,7 @@
 #nav-sec {
-	position: fixed;
+	position: absolute;
 	top: 0;
-	left: $nav-width;
+	left: 0;
 	bottom: 0;
 	width: $nav-sec-width;
 	border-right: 1px solid $body-border;

@@ -35,9 +35,17 @@
 
 		a {
 			display: block;
-			height: $nav-width;
+			height: $nav-width / 2;
 			color: inherit;
-			padding: 20px 5px 10px;
+			padding: 10px 5px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		&.has-icon a {
+			height: $nav-width;
+			padding-top: 20px;
 		}
 
 		.icon {

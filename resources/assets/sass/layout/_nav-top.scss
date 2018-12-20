@@ -2,9 +2,9 @@
 $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 
 #nav-top {
-	position: fixed;
+	position: absolute;
 	top: 0;
-	left: $nav-width;
+	left: 0;
 	right: 0;
 	height: $nav-width;
 	white-space: nowrap;
@@ -27,7 +27,7 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 
 #nav-top-head {
 	width: $nav-sec-width;
-	font-weight: 600;
+	font-weight: 500;
 	border-right: 1px solid $body-border;
 }
 

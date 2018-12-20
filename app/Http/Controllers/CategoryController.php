@@ -30,10 +30,10 @@ class CategoryController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function type_index( $type, Category $category ) {
-		$title = "Manage $category->name $type";
+		$title = sprintf( __( 'Manage %s' ), "$category->name $type" );
 
 		if ( $category->type !== $type ) {
-			$category = Category::where([ [ 'slug', $category->slug ], [ 'type', str_singular($type) ] ])->first();
+			$category = Category::where([ [ 'slug', $category->slug ], [ 'post_type', str_singular($type) ] ])->first();
 		}
 
 		$posts = $category->$type( $category->id );

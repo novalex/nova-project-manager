@@ -1,8 +1,6 @@
 @if (
-	View::hasSection('nav-top-head')
-	||
-	View::hasSection('nav-top-title')
-	||
+	View::hasSection('nav-top-head') ||
+	View::hasSection('nav-top-title') ||
 	View::hasSection('nav-top-actions')
 )
 	<nav id="nav-top">

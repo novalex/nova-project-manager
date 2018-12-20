@@ -1,5 +1,7 @@
+
 #content {
 	display: flex;
+	flex-direction: column;
 	min-height: 100vh;
 	padding: $content-padding;
 
@@ -25,45 +27,10 @@
 	}
 }
 
-// Grid display.
-.content-grid {
-	display: flex;
-	flex-grow: 1;
-	flex-wrap: wrap;
-	flex-direction: row;
-	align-content: flex-start;
-	margin: $content-padding / -2;
-
-	.grid-item {
-		width: 33.333%;
-		padding: $content-padding / 2;
-
-		> a {
-			display: block;
-			padding: 20px 15px;
-			max-height: 100px;
-			border: 1px solid $body-border;
-			border-radius: $border-radius;
-			background-color: $body-bg;
-			box-shadow: 0 0 0 transparent;
-			transition: background-color 0.3s, box-shadow 0.3s;
-
-			&:hover {
-				background-color: $body-bg-alt;
-				box-shadow: 0 1px 6px rgba(0, 0, 0, 0.075);
-			}
-
-			&:focus {
-				box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.075);
-			}
-
-			> * {
-				display: block;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-		}
+// Content lists.
+.content-list {
+	.item {
+		line-height: $content-padding;
 
 		.title {
 			color: $text-color;
@@ -72,16 +39,111 @@
 		.subtitle {
 			color: $text-color-fade;
 		}
+
+		.item-action {
+			width: 32px;
+			cursor: pointer;
+			font-size: 16px;
+			color: $text-color-fade;
+			transition: color 0.3s;
+
+			&:hover,
+			&:focus {
+				color: $text-color;
+			}
+		}
+	}
+
+	// Grid display.
+	&.-grid {
+		display: flex;
+		flex-grow: 1;
+		flex-wrap: wrap;
+		flex-direction: row;
+		align-content: flex-start;
+		margin: $content-padding / -2;
+
+		.item {
+			width: 33.333%;
+			padding: $content-padding / 2;
+
+			> a,
+			> div {
+				display: block;
+				padding: 20px 15px;
+				max-height: 100px;
+				border: 1px solid $body-border;
+				border-radius: $border-radius;
+				background-color: $body-bg;
+				box-shadow: 0 0 0 transparent;
+			}
+
+			> a {
+				transition: background-color 0.3s, box-shadow 0.3s;
+
+				&:hover {
+					background-color: $body-bg-alt;
+					box-shadow: 0 1px 6px rgba(0, 0, 0, 0.075);
+				}
+
+				&:focus {
+					box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.075);
+				}
+
+				> * {
+					display: block;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+			}
+		}
+	}
+
+	// Table display.
+	&.-table {
+		border: 1px solid $body-border;
+		border-radius: $border-radius;
+		box-shadow: 0 0 0 transparent;
+		transition: box-shadow 0.3s;
+
+		&:hover {
+			box-shadow: 0 1px 6px rgba(0, 0, 0, 0.075);
+		}
+
+		.item {
+			display: flex;
+			background-color: $body-bg;
+			transition: background-color 0.3s;
+
+			&:not(:last-child) {
+				border-bottom: 1px solid $body-border;
+			}
+
+			&:hover {
+				background-color: $body-bg-alt;
+			}
+
+			> * {
+				flex-grow: 1;
+				padding: $content-padding / 2;
+			}
+
+			> .action {
+				flex-grow: 0;
+				flex-shrink: 1;
+			}
+		}
 	}
 }
 
 // Posts.
 #post-body,
-.editor-preview {
-	> p,
-	> ol,
-	> ul {
-		margin-bottom: $content-padding / 2;
+.editor-preview,
+.container {
+	> *:not(:last-child) {
+		margin-bottom: $content-padding;
+		// margin-bottom: $content-padding / 2;
 	}
 
 	ol,

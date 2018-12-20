@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTypesTable extends Migration {
+class CreateOptionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePostTypesTable extends Migration {
 	 */
 	public function up() {
 		Schema::create(
-			'post_types',
+			'options',
 			function ( Blueprint $table ) {
 				$table->increments( 'id' );
 				$table->string( 'name' );
-				$table->text( 'meta' )->nullable()->default( null ); // Should be JSON.
+				$table->longText( 'value' )->nullable()->default( null );
 			}
 		);
 	}
@@ -28,6 +28,6 @@ class CreatePostTypesTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists( 'post_types' );
+		Schema::dropIfExists( 'options' );
 	}
 }

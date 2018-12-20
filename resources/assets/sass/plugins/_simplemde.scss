@@ -455,13 +455,13 @@ span.CodeMirror-selectedtext {
 	border: 1px solid $body-border;
 	border-bottom-left-radius: $border-radius;
 	border-bottom-right-radius: $border-radius;
-	background-color: $body-bg-alt;
+	background-color: $input-bg;
 	transition: background-color 0.2s;
 	z-index: 1;
 
 	&:hover,
 	&.CodeMirror-focused {
-		background-color: $body-bg;
+		background-color: $input-bg-alt;
 	}
 }
 

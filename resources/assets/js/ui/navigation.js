@@ -1,29 +1,32 @@
 // Barba.js PJAX.
-Barba = require( 'barba.js' );
+const Barba = require( 'barba.js' );
 
-var FadeTransition = Barba.BaseTransition.extend( {
+const FadeTransition = Barba.BaseTransition.extend( {
 	start: function() {
 		Promise
-			.all( [ this.newContainerLoading, this.fadeOut() ] )
-			.then( this.fadeIn.bind( this ) );
+			.all( [ this.newContainerLoading ] )
+			.then( this.fadeInOut.bind( this ) );
 	},
 
-	fadeOut: function() {
-		return $( this.oldContainer ).animate( { opacity: 0 } ).promise();
-	},
-
-	fadeIn: function() {
+	fadeInOut: function() {
 		var _this = this;
-		var $el = $( this.newContainer );
+		var $oldContent = $( _this.oldContainer );
+		var $newContent = $( _this.newContainer );
 
-		$( this.oldContainer ).hide();
+		$oldContent.addClass( 'fading-out' );
+		$newContent.addClass( 'fading-in' ).css( 'visibility', '' );
 
-		$el.css( {
-			visibility: 'visible',
-			opacity: 0
-		} );
+		if ( _this.oldContainer.childElementCount === _this.newContainer.childElementCount ) {
+			$oldContent.addClass( 'fade-layout' );
+		} else {
+			$oldContent.addClass( 'switch-layout' );
+		}
 
-		$el.animate( { opacity: 1 }, 100, function() {
+		$oldContent.one( 'webkitAnimationEnd oanimationend msAnimationEnd animationend', function() {
+			_this.oldContainer.remove();
+
+			$newContent.removeClass( 'fading-in' );
+
 			_this.done();
 		} );
 	}
@@ -34,11 +37,8 @@ Barba.Pjax.getTransition = function() {
 };
 
 Barba.BaseTransition.done = function() {
-	this.oldContainer.remove();
-
 	initApp();
 
-	this.newContainer.style.visibility = 'visible';
 	this.deferred.resolve();
 };
 
@@ -48,15 +48,17 @@ Barba.Pjax.start();
 Barba.Prefetch.init();
 
 // Menu navigation.
-var navigation = document.querySelector( '#nav-main-menu' );
-menuItems = navigation.querySelectorAll( '.menu-item' );
+const navigation = document.querySelector( '#nav-main-menu' );
+if ( navigation ) {
+	let menuItems = navigation.querySelectorAll( '.menu-item' );
 
-menuItems.forEach( function( item ) {
-	item.addEventListener( 'click', function() {
-		menuItems.forEach( function( itemi ) {
-			itemi.classList.remove( 'active' );
+	menuItems.forEach( function( item ) {
+		item.addEventListener( 'click', function() {
+			menuItems.forEach( function( itemi ) {
+				itemi.classList.remove( 'active' );
+			} );
+
+			item.classList.add( 'active' );
 		} );
-
-		item.classList.add( 'active' );
 	} );
-});
+}

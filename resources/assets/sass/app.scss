@@ -1,31 +1,31 @@
 
 // Fonts
-@import url("https://use.fontawesome.com/releases/v5.6.1/css/all.css");
-@import url("https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700");
+@import url( 'https://use.fontawesome.com/releases/v5.6.1/css/all.css' );
+@import url( 'https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700' );
 
 // Scaffold
-@import "reset";
-
-// Variables
-@import "variables";
+@import 'variables';
+@import 'reset';
+@import 'animations';
 
 // Typography
-@import "typography";
+@import 'typography';
 
 // Layout
-@import "layout/main";
-@import "layout/nav-main";
-@import "layout/nav-top";
-@import "layout/nav-sec";
-@import "layout/content";
-@import "layout/single";
+@import 'layout/main';
+@import 'layout/nav-main';
+@import 'layout/nav-top';
+@import 'layout/nav-sec';
+@import 'layout/content';
+@import 'layout/admin';
+@import 'layout/single';
 
 // Plugins
-@import "plugins/highlight";
-@import "plugins/simplemde";
+@import 'plugins/highlight';
+@import 'plugins/simplemde';
 
 // UI
-@import "ui/alerts";
-@import "ui/forms";
-@import "ui/buttons";
-@import "ui/links";
+@import 'ui/alerts';
+@import 'ui/forms';
+@import 'ui/buttons';
+@import 'ui/links';

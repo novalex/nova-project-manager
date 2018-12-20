@@ -1,0 +1,19 @@
+@keyframes contentFadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes contentSlideOut {
+	0% {
+		transform: translate( 0, 0 );
+	}
+
+	100% {
+		transform: translateX( 0, 100 );
+	}
+}

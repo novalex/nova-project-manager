@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMenusTable extends Migration {
+class CreatePostTypesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,13 +13,11 @@ class CreateMenusTable extends Migration {
 	 */
 	public function up() {
 		Schema::create(
-			'menus',
+			'post_types',
 			function ( Blueprint $table ) {
 				$table->increments( 'id' );
 				$table->string( 'name' );
-				$table->text( 'options' )->nullable()->default( null );
-				$table->string( 'url' );
-				$table->integer( 'parent' )->nullable()->default( null );
+				$table->string( 'slug' );
 			}
 		);
 	}
@@ -30,6 +28,6 @@ class CreateMenusTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists( 'menus' );
+		Schema::dropIfExists( 'post_types' );
 	}
 }

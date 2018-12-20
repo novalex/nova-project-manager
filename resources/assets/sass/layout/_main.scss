@@ -10,6 +10,41 @@ body {
 	display: none;
 }
 
+#app {
+	position: relative;
+}
+
+#app-data {
+	display: none;
+}
+
+.app-container {
+	width: 100%;
+	position: relative;
+	opacity: 1;
+	background-color: $body-bg;
+	z-index: 2;
+
+	&.fading-in {
+		position: absolute;
+		top: 0;
+		left: auto;
+		right: 0;
+		z-index: 1;
+	}
+
+	&.fading-out {
+		animation-name: contentFadeOut;
+		animation-duration: $fade-transition-duration;
+
+		// }
+
+		// &.switch-layout {
+		// animation-name: contentFadeOut, contentSlideOut;
+		// }
+	}
+}
+
 .fade-enter-active, .fade-leave-active {
 	transition: opacity .5s;
 }

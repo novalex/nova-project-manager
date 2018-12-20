@@ -39,7 +39,13 @@ directives.keys().forEach( directives );
 Vue.component( 'editor', require( './components/Editor.vue' ) );
 
 window.initApp = function() {
-	const appData = JSON.parse( document.getElementById( 'app-data' ).innerHTML );
+	const appDataContainer = document.getElementById( 'app-data' );
+
+	let appData = {};
+
+	if ( appDataContainer ) {
+		appData = JSON.parse( appDataContainer.innerHTML );
+	}
 
 	new Vue( {
 		el: '#app',

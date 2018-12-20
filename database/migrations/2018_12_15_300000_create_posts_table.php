@@ -20,11 +20,12 @@ class CreatePostsTable extends Migration {
 				$table->string( 'slug' )->nullable()->default( null );
 				$table->longText( 'body' )->nullable()->default( null );
 				$table->integer( 'category' )->unsigned()->nullable()->default( null );
-				$table->text( 'meta' )->nullable()->default( null ); // Should be JSON.
+				$table->integer( 'post_type' )->unsigned();
 				$table->timestamps();
 
 				$table->unique( 'slug' );
 				$table->foreign( 'category' )->references( 'id' )->on( 'categories' );
+				$table->foreign( 'post_type' )->references( 'id' )->on( 'post_types' );
 			}
 		);
 	}
