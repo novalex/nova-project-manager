@@ -55,6 +55,8 @@ class PostController extends Controller {
 			'create' => "{$this->url}/create",
 		) );
 
+		\View::share( 'strings', $this->strings );
+
 		\View::share( 'post_type', $this->post_type );
 
 		parent::__construct();
@@ -70,7 +72,7 @@ class PostController extends Controller {
 			$this->views['index'],
 			array(
 				'title' => sprintf( __( 'Manage %s' ), $this->strings['plural'] ),
-				'posts' => Post::all(),
+				'posts' => Post::all()->where( 'post_type', $this->post_type['id'] ),
 			)
 		);
 	}

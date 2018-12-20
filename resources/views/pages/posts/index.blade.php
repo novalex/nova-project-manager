@@ -23,7 +23,7 @@
 		</div>
 	@else
 		<div class="no-content">
-			<p>{{ __( 'No posts created.' ) }}</p>
+			<p>{{ sprintf( __( 'No %s created.' ), $strings['plural'] ) }}</p>
 		</div>
 	@endif
 @endsection
