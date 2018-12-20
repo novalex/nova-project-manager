@@ -38,6 +38,6 @@ class CategoryController extends Controller {
 
 		$posts = $category->$type( $category->id );
 
-		return view( 'pages.' . $type . '.category', compact( 'title', 'category', 'posts' ) );
+		return view( 'pages.posts.category', compact( 'title', 'category', 'posts' ) );
 	}
 }

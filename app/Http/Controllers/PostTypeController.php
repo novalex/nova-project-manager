@@ -27,6 +27,10 @@ class PostTypeController extends PostController {
 			'plural'   => str_plural( $post_type['name'] )
 		);
 
+		\View::share( 'sec_menu_items', get_nav_menu_items( 'categories', array(
+			'post_type' => $post_type,
+		) ) );
+
 		parent::__construct();
 	}
 

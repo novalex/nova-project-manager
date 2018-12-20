@@ -62,6 +62,12 @@ function get_categories( $type ) {
 function get_nav_menu_items( $menu, $args = [] ) {
 	$items = array();
 
+	if ( empty( $args['item_args'] ) ) {
+		$args['item_args'] = array(
+			'class' => 'half',
+		);
+	}
+
 	switch ( $menu ) {
 
 		// Main menu.
@@ -130,24 +136,32 @@ function get_nav_menu_items( $menu, $args = [] ) {
 
 		// Categories menu.
 		case 'categories':
-			$categories = get_categories( $args['post_type'] );
+			$categories = get_categories( $args['post_type']['id'] );
 
 			if ( $categories ) {
 				$items[] = array_merge(
 					[
 						'name' => __( 'All' ),
-						'url'  => str_plural( $args['post_type'] ),
+						'url'  => str_plural( $args['post_type']['slug'] ),
 					],
 					$args['item_args']
 				);
 
 				foreach ( $categories as $category ) {
+					$item_args = $args['item_args'];
+
+					$item_url = str_plural( $args['post_type']['slug'] ) . '/category/' . $category->slug;
+
+					if ( \Request::is( [ $item_url, "$item_url/*" ] ) ) {
+						$item_args['class'] .= ' active';
+					}
+
 					$items[] = array_merge(
 						[
 							'name' => $category->name,
-							'url'  => str_plural( $args['post_type'] ) . '/category/' . $category->slug,
+							'url'  => $item_url,
 						],
-						$args['item_args']
+						$item_args
 					);
 				}
 			}
