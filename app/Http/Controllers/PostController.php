@@ -142,7 +142,7 @@ class PostController extends Controller {
 			array(
 				'title'   => $post->name,
 				'post'    => $post,
-				'content' => ( new \Parsedown() )->text( $post->body ),
+				'content' => ( new \Parsedown() )->setBreaksEnabled( true )->text( $post->body ),
 			)
 		);
 	}

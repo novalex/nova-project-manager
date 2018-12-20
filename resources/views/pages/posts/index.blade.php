@@ -6,7 +6,7 @@
 @endsection
 
 @section('nav-top-actions')
-	<a href="{{ url( $url['create'] ) }}" class="button -green">{{ __( 'New Post' ) }}</a>
+	<a href="{{ url( $url['create'] ) }}" class="button -green">{{ sprintf( __( 'New %s' ), $strings['singular'] ) }}</a>
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
 		</div>
 	@else
 		<div class="no-content">
-			<p>{{ sprintf( __( 'No %s created.' ), $strings['plural'] ) }}</p>
+			<p>{{ sprintf( __( 'No %s.' ), $strings['plural'] ) }}</p>
 		</div>
 	@endif
 @endsection
