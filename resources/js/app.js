@@ -32,28 +32,17 @@ window.Vue = require( 'vue' );
 Vue.config.ignoredElements = ['IfModule'];
 
 // Load directives.
-var directives = require.context( './directives', true, /^(.*\.(js$))[^.]*$/i );
-directives.keys().forEach( directives );
+// var directives = require.context( './directives', true, /^(.*\.(js$))[^.]*$/i );
+// directives.keys().forEach( directives );
 
 // Load components.
 Vue.component( 'editor', require( './components/Editor.vue' ) );
 
 window.initApp = function() {
-	const appDataContainer = document.getElementById( 'app-data' );
-
-	let appData = {};
-
-	if ( appDataContainer ) {
-		appData = JSON.parse( appDataContainer.innerHTML );
-	}
-
 	new Vue( {
 		el: '#app',
 
-		data: {
-			navTopTitle: appData.navTopTitle || '',
-			navTopSubtitle: appData.navTopSubtitle || '',
-		}
+		data: {}
 	});
 
 	triggerEvent( document, 'app.ready' );
