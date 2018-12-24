@@ -1,7 +1,49 @@
 
 // Fonts
-@import url('https://use.fontawesome.com/releases/v5.6.1/css/all.css');
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800');
+
+@import 'plugins/fontawesome';
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Poppins Regular'), url('../fonts/poppins/Poppins-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 500;
+	src: local('Poppins Medium'), url('../fonts/poppins/Poppins-Medium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	src: local('Poppins SemiBold'), url('../fonts/poppins/Poppins-SemiBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Poppins Bold'), url('../fonts/poppins/Poppins-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 800;
+	src: local('Poppins ExtraBold'), url('../fonts/poppins/Poppins-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 900;
+	src: local('Poppins Black'), url('../fonts/poppins/Poppins-Black.woff') format('woff');
+}
 
 // Headings.
 h1, h2, h3, h4, h5, h6 {

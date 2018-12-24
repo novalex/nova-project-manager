@@ -27,34 +27,9 @@ require( './ui/actions' );
 require( './ui/editor' );
 require( './ui/navigation' );
 
-// Vue
-window.Vue = require( 'vue' );
-Vue.config.ignoredElements = ['IfModule'];
-
-// Load directives.
-// var directives = require.context( './directives', true, /^(.*\.(js$))[^.]*$/i );
-// directives.keys().forEach( directives );
-
-// Load components.
-Vue.component( 'editor', require( './components/Editor.vue' ) );
-
+// Init.
 window.initApp = function() {
-	new Vue( {
-		el: '#app',
-
-		data: {}
-	});
-
 	triggerEvent( document, 'app.ready' );
 }
 
 initApp();
-
-// import Echo from 'laravel-echo'
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });

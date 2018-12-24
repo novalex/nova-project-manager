@@ -42,7 +42,7 @@
 					<label for="category">{{ __( 'Category' ) }}</label>
 					<input type="text" id="category" name="category" value="{{ old( 'category' ) }}" list="categories">
 					<datalist id="categories">
-						@foreach ( get_categories( $post_type ) as $category )
+						@foreach ( get_categories( $post_type['id'] ) as $category )
 							<option>{{ $category->name }}</option>
 						@endforeach
 					</datalist>
@@ -53,7 +53,9 @@
 			<div class="fieldgroup -post-content">
 				<div class="fieldset">
 					<label for="body">{{ __( 'Content' ) }}</label>
-					<textarea id="body" name="body" rows="12" class="editable">{{ old( 'body' ) }}</textarea>
+					<div class="editor-wrap">
+						<textarea id="body" name="body" rows="12" class="md-editable">{{ old( 'body' ) }}</textarea>
+					</div>
 				</div>
 			</div>
 

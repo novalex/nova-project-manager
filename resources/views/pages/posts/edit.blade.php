@@ -37,7 +37,7 @@
 				<div class="fieldset">
 					<label for="slug">{{ __( 'Slug' ) }}</label>
 					<div class="inputgroup">
-						<span class="prefix">{{ url( '/posts' ) }}/</span>
+						<span class="prefix">{{ url( $url['index'] ) }}/</span>
 						<input type="text" id="slug" name="slug" value="{{ $post->slug }}" class="filter-slug">
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 					<label for="category">{{ __( 'Category' ) }}</label>
 					<input type="text" id="category" name="category" value="{{ get_category( $post->category ) }}" list="categories">
 					<datalist id="categories">
-						@foreach ( get_categories( 'post' ) as $category )
+						@foreach ( get_categories( $post_type['id'] ) as $category )
 							<option>{{ $category->name }}</option>
 						@endforeach
 					</datalist>
@@ -56,7 +56,9 @@
 			<div class="fieldgroup -post-content">
 				<div class="fieldset">
 					<label for="body">{{ __( 'Content' ) }}</label>
-					<editor el-id="body" name="body" rows="12" content="{{ $post->body }}"></editor>
+					<div class="editor-wrap">
+						<textarea id="body" name="body" rows="12" class="md-editable">{{ $post->body }}</textarea>
+					</div>
 				</div>
 			</div>
 
