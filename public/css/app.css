@@ -6122,12 +6122,14 @@ body {
 }
 
 .content-list .item .item-action {
-  width: 32px;
+  width: 24px;
   cursor: pointer;
   font-size: 16px;
+  text-align: center;
   color: #777;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+  display: inline-block;
 }
 
 .content-list .item .item-action:hover, .content-list .item .item-action:focus {
@@ -6240,6 +6242,10 @@ body {
           flex-grow: 0;
   -ms-flex-negative: 1;
       flex-shrink: 1;
+}
+
+.content-list.-table .item > .action:not(:first-child) {
+  padding-left: 0;
 }
 
 #post-body > *:not(:last-child),

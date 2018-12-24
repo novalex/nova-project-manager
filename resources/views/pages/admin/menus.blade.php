@@ -150,7 +150,9 @@
 	@default
 
 		@section('nav-top-actions')
-			<a href="{{ url( "$url/create " ) }}" class="button -green">{{ __( 'New' ) }}</a>
+
+			<a href="{{ url( "$url/create " ) }}" class="button -green">{{ __( 'New Item' ) }}</a>
+
 		@endsection
 
 		@section('content')
@@ -159,15 +161,18 @@
 				<div class="content-list -table -menus">
 					@foreach ( $menus as $menu )
 						<div class="item">
+
 							<div class="title">
 								<strong class="title">{{ $menu['name'] }}</strong>
 								<small class="subtitle">{{ url( $menu['url'] ) }}</small>
 							</div>
+
 							<div class="action">
 								<a href="{{ url( "$url/{$menu['id']}/edit" ) }}" class="item-action action-edit">
 									<i class="far fa-edit"></i>
 								</a>
 							</div>
+
 							<div class="action">
 								<form method="POST" action="{{ url( "$url/{$menu['id']}" ) }}">
 									{{ csrf_field() }} {{ method_field( 'DELETE' ) }}
@@ -176,6 +181,7 @@
 									</button>
 								</form>
 							</div>
+
 						</div>
 					@endforeach
 				</div>
