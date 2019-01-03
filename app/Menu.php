@@ -8,6 +8,8 @@ class Menu extends Model {
 
 	protected $guarded = [];
 
+	public $timestamps = false;
+
 	/**
 	 * The attributes that should be cast to native types.
 	 *
@@ -16,7 +18,5 @@ class Menu extends Model {
 	protected $casts = [
 		'options' => 'array',
 	];
-
-	public $timestamps = false;
 
 }

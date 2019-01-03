@@ -6105,8 +6105,12 @@ body {
   line-height: 36px;
 }
 
-#content .full {
-  width: 100%;
+#content > div {
+  max-width: 100%;
+}
+
+#content > div.full {
+  width: 1024px;
 }
 
 .content-list .item {
@@ -6293,7 +6297,7 @@ body {
 
 .single-content,
 .single-edit {
-  max-width: 1024px;
+  width: 640px;
   margin-left: auto;
   margin-right: auto;
 }
