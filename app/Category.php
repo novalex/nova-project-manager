@@ -15,8 +15,4 @@ class Category extends Model {
 		$this->attributes['name'] = $value;
 		$this->attributes['slug'] = str_slug( $value );
 	}
-
-	public function posts( $category_id ) {
-		return Post::where( 'category', $category_id )->get();
-	}
 }

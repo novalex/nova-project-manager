@@ -6,15 +6,15 @@
 @endsection
 
 @section('nav-top-actions')
-	<a href="{{ url( 'posts/create' ) }}" class="button -green">{{ __( 'New post' ) }}</a>
+	<a href="{{ url( $url['create'] ) }}" class="button -green">{{ sprintf( __( 'New %s' ), $strings['singular'] ) }}</a>
 @endsection
 
 @section('content')
-	@isset ( $posts )
+	@if ( count( $posts ) )
 		<div class="content-list -grid">
 			@foreach ( $posts as $post )
 				<div class="item">
-					<a href="{{ url( 'posts/' . $post['slug'] ) }}">
+					<a href="{{ url( "{$url['index']}/{$post['slug']}" ) }}">
 						<strong class="title">{{ $post['name'] }}</strong>
 					</a>
 				</div>
@@ -22,7 +22,7 @@
 		</div>
 	@else
 		<div class="no-content">
-			<p>{{ __( 'No posts in this folder.' ) }}</p>
+			<p>{{ sprintf( __( 'No %1$s in the %2$s folder.' ), $strings['plural'], $category->name ) }}</p>
 		</div>
-	@endisset
+	@endif
 @endsection
