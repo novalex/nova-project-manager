@@ -163,8 +163,11 @@
 						<div class="item">
 
 							<div class="title">
-								<strong class="title">{{ $menu['name'] }}</strong>
-								<small class="subtitle">{{ url( $menu['url'] ) }}</small>
+								<strong>{{ $menu['name'] }}</strong>
+							</div>
+
+							<div class="subtitle">
+								<small>{{ url( $menu['url'] ) }}</small>
 							</div>
 
 							<div class="action">

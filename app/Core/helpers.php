@@ -147,6 +147,10 @@ function get_nav_menu_items( $menu, $args = [] ) {
 					$args['item_args']
 				);
 
+				if ( \Request::is( str_plural( $args['post_type']['slug'] ) ) ) {
+					$items[0]['class'] = ( isset( $items[0]['class'] ) ) ? $items[0]['class'] . ' active' : 'active';
+				}
+
 				foreach ( $categories as $category ) {
 					$item_args = $args['item_args'];
 

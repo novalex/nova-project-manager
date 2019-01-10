@@ -3,11 +3,14 @@
 .content-list.-menus {
 	.item {
 		.title {
-			width: 20%;
+			width: 10%;
 		}
 
 		.subtitle {
-			width: 50%;
+			small {
+				display: inline-block;
+				line-height: 1;
+			}
 		}
 	}
 }

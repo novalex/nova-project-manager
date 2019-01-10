@@ -68,10 +68,19 @@
 		flex-direction: row;
 		align-content: flex-start;
 		margin: $content-padding / -2;
+		max-width: calc( 100% + #{$content-padding} ) !important;
 
 		.item {
-			width: 33.333%;
+			width: 100%;
 			padding: $content-padding / 2;
+
+			@media (min-width: 1024px) {
+				width: 50%;
+			}
+
+			@media ( min-width: 1400px ) {
+				width: 33.333%;
+			}
 
 			> a,
 			> div {
@@ -111,6 +120,7 @@
 		border: 1px solid $body-border;
 		border-radius: $border-radius;
 		box-shadow: 0 0 0 transparent;
+		overflow: hidden;
 		transition: box-shadow 0.3s;
 
 		&:hover {

@@ -120,7 +120,7 @@
 						<div class="item">
 
 							<div class="title">
-								<strong class="title">{{ $post_type['name'] }}</strong>
+								<strong>{{ $post_type['name'] }}</strong>
 							</div>
 
 							<div class="action">

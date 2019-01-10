@@ -44,7 +44,7 @@ Barba.BaseTransition.done = function() {
 
 Barba.Pjax.Dom.wrapperId = 'app';
 Barba.Pjax.Dom.containerClass = 'app-container';
-Barba.Pjax.start();
+// Barba.Pjax.start();
 Barba.Prefetch.init();
 
 // Menu navigation.
