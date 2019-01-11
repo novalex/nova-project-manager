@@ -20,6 +20,11 @@ class AdminSettingsController extends AdminController {
 		) );
 	}
 
+	/**
+	 * Return array of settings fields.
+	 *
+	 * @return array
+	 */
 	public function getSettingsFields() {
 		return array(
 			'ui_show_dashboard_menu' => array(

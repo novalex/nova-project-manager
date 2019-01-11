@@ -42,8 +42,7 @@ class AdminPostTypeController extends AdminController {
 		\View::share( 'url', $this->url );
 
 		$route = Route::current();
-		$route_action = $route ? $route->getActionMethod() : 'index';
-		\View::share( 'action', $route_action );
+		\View::share( 'action', $route ? $route->getActionMethod() : 'index' );
 
 		$post_types = PostType::all();
 		if ( empty( $post_types ) ) {
