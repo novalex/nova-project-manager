@@ -11,7 +11,7 @@
 
 @section('content')
 	@if ( count( $posts ) )
-		<div class="content-list -grid">
+		<div class="content-list -grid -posts">
 			@foreach ( $posts as $post )
 				<div class="item">
 					<a href="{{ url( "{$url['index']}/{$post['slug']}" ) }}">

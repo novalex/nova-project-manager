@@ -163,11 +163,10 @@
 						<div class="item">
 
 							<div class="title">
-								<strong>{{ $menu['name'] }}</strong>
-							</div>
-
-							<div class="subtitle">
-								<small>{{ url( $menu['url'] ) }}</small>
+								<a href="{{ url( "$url/{$menu['id']}/edit" ) }}" class="no-color">
+									<strong>{{ $menu['name'] }}</strong>
+									<small class="subtitle">{{ url( $menu['url'] ) }}</small>
+								</a>
 							</div>
 
 							<div class="action">

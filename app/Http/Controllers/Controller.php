@@ -15,6 +15,43 @@ class Controller extends BaseController {
 	 * Constructor.
 	 */
 	public function __construct() {
-		// $route = \Route::current();
+	}
+
+	/**
+	 * Display index page.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		\View::share( 'has_search', true );
+
+		$stats = array(
+			array(
+				'title'  => __( 'Users' ),
+				'icon'   => 'fas fa-users',
+				'number' => \DB::table( 'users' )->count(),
+				'url'    => url( 'admin/users' ),
+			),
+		);
+
+		$post_type_icons = array(
+			'project' => 'fas fa-project-diagram',
+			'snippet' => 'far fa-file-alt',
+		);
+
+		foreach ( \DB::table( 'post_types' )->get() as $post_type ) {
+			$stats[] = array(
+				'title'  => str_plural( $post_type->name ),
+				'icon'   => isset( $post_type_icons[ $post_type->slug ] ) ? $post_type_icons[ $post_type->slug ] : 'fas fa-chart-bar',
+				'number' => \DB::table( 'posts' )->where( 'post_type', $post_type->id )->count(),
+				'url'    => url( str_plural( $post_type->slug ) ),
+			);
+		}
+
+		\View::share( 'stats', $stats );
+
+		return view( 'pages.dashboard', array(
+			'title' => __( 'Dashboard' ),
+		) );
 	}
 }

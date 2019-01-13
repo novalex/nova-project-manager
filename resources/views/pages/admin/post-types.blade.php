@@ -120,7 +120,9 @@
 						<div class="item">
 
 							<div class="title">
-								<strong>{{ $post_type['name'] }}</strong>
+								<a href="{{ url( "$url/{$post_type['id']}/edit" ) }}" class="no-color">
+									<strong>{{ $post_type['name'] }}</strong>
+								</a>
 							</div>
 
 							<div class="action">

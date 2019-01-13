@@ -31,20 +31,6 @@
 	src: local('Poppins Bold'), url('../fonts/poppins/Poppins-Bold.woff') format('woff');
 }
 
-@font-face {
-	font-family: 'Poppins';
-	font-style: normal;
-	font-weight: 800;
-	src: local('Poppins ExtraBold'), url('../fonts/poppins/Poppins-ExtraBold.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Poppins';
-	font-style: normal;
-	font-weight: 900;
-	src: local('Poppins Black'), url('../fonts/poppins/Poppins-Black.woff') format('woff');
-}
-
 // Headings.
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;

@@ -6,9 +6,6 @@ use App\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-
 class AdminMenuController extends AdminController {
 
 	/**
@@ -56,7 +53,7 @@ class AdminMenuController extends AdminController {
 		return view(
 			$this->view,
 			array(
-				'title' => sprintf( __( 'Manage %s' ), $this->strings['plural'] ),
+				'title' => sprintf( __( 'Manage %s' ), ucwords( $this->strings['plural'] ) ),
 				'menus' => Menu::all(),
 			)
 		);

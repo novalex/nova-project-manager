@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\PostType;
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-
 class AdminPostController extends PostController {
 
 	/**

@@ -6,9 +6,6 @@ use App\PostType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-
 class AdminPostTypeController extends AdminController {
 
 	/**
@@ -62,7 +59,7 @@ class AdminPostTypeController extends AdminController {
 		return view(
 			$this->view,
 			array(
-				'title'      => sprintf( __( 'Manage %s' ), $this->strings['plural'] ),
+				'title'      => sprintf( __( 'Manage %s' ), ucwords( $this->strings['plural'] ) ),
 				'post_types' => PostType::all(),
 			)
 		);

@@ -13,6 +13,9 @@ use App\PostType;
 |
 */
 
+// Index page.
+Route::get( '/', 'Controller@index' );
+
 // Define settings routes.
 Route::prefix( 'admin' )->group( function() {
 	Route::get( '/', 'AdminController@index' );
@@ -22,8 +25,6 @@ Route::prefix( 'admin' )->group( function() {
 	Route::resource( 'post-types', 'AdminPostTypeController' );
 	Route::resource( 'users', 'AdminUserController' );
 } );
-
-Route::view( '/', 'pages.dashboard', array( 'title' => __( 'Dashboard' ) ) );
 
 // Create post type routes.
 if ( Schema::hasTable('post_types') ) {
@@ -41,3 +42,6 @@ if ( Schema::hasTable('post_types') ) {
 		Route::get( "{$post_type['url']}/category/{category}", 'PostTypeController@category_index' );
 	}
 }
+
+// Search.
+Route::get( '/search/{keyword}', 'SearchController@search' );

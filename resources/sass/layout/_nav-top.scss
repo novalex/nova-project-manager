@@ -7,12 +7,14 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 	left: 0;
 	right: 0;
 	height: $nav-width;
+	display: flex;
+	align-items: center;
 	white-space: nowrap;
 	border-bottom: 1px solid $body-border;
 	background-color: $body-bg-alt;
+	z-index: 9;
 
 	> div {
-		float: left;
 		padding: $content-padding;
 		line-height: $nav-top-line-height;
 		vertical-align: top;
@@ -32,7 +34,10 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 }
 
 #nav-top-title {
+	max-width: 50%;
+	overflow: hidden;
 	font-weight: 500;
+	text-overflow: ellipsis;
 
 	strong {
 		display: block;
@@ -54,8 +59,81 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 	}
 }
 
+#nav-top-search {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate( -50%, 0 );
+
+	input {
+		padding: 0 10px;
+		border-width: 0;
+		text-align: center;
+		background: transparent;
+	}
+
+	.search-results {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		overflow: hidden;
+		border: 1px solid $body-border;
+		border-top-width: 0;
+		border-bottom-left-radius: $border-radius;
+		border-bottom-right-radius: $border-radius;
+		background-color: $body-bg;
+		box-shadow: 0 1px 12px rgba(0,0,0,0.05);
+
+		ul {
+			li {
+				padding: $content-padding / 2;
+				padding-bottom: 0;
+				line-height: 1.4;
+				white-space: normal;
+				cursor: pointer;
+				background-color: $body-bg;
+				transition: border-color 0.2s;
+
+				&:not(:last-child) {
+					border-bottom: 1px solid $body-border;
+				}
+
+				&:hover {
+					background-color: $body-bg-alt;
+				}
+
+				strong,
+				p,
+				small {
+					display: block;
+					margin-bottom: $content-padding / 2
+				}
+
+				em {
+					font-style: normal;
+					border-bottom: 1px dashed $color-green;
+				}
+
+				strong em {
+					font-weight: 700;
+				}
+
+				p em {
+					font-weight: 500;
+				}
+			}
+		}
+
+		> p {
+			color: $text-color-fade;
+			padding: $content-padding / 2 $content-padding;
+		}
+	}
+}
+
 #nav-top-actions {
-	float: right !important;
+	margin-left: auto;
 
 	.button,
 	form {

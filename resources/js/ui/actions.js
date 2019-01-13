@@ -1,3 +1,4 @@
+
 document.addEventListener( 'app.ready', function() {
 
 	// Delete

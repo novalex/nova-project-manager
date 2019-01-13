@@ -36,6 +36,12 @@
 	.item {
 		line-height: $content-padding;
 
+		> a {
+			color: inherit;
+			overflow: hidden;
+			position: relative;
+		}
+
 		.title {
 			color: $text-color;
 		}
@@ -58,6 +64,14 @@
 				color: $text-color;
 			}
 		}
+
+		.bg-icon {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			font-size: 32px;
+			opacity: 0.15;
+		}
 	}
 
 	// Grid display.
@@ -71,16 +85,8 @@
 		max-width: calc( 100% + #{$content-padding} ) !important;
 
 		.item {
-			width: 100%;
+			flex-grow: 1;
 			padding: $content-padding / 2;
-
-			@media (min-width: 1024px) {
-				width: 50%;
-			}
-
-			@media ( min-width: 1400px ) {
-				width: 33.333%;
-			}
 
 			> a,
 			> div {

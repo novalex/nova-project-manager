@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-
 class PostController extends Controller {
 
 	/**
@@ -61,6 +58,8 @@ class PostController extends Controller {
 		\View::share( 'strings', $this->strings );
 
 		\View::share( 'post_type', $this->post_type );
+
+		\View::share( 'has_search', true );
 
 		parent::__construct();
 	}
