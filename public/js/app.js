@@ -31258,6 +31258,8 @@ if (token) {
 } // UI.
 
 
+__webpack_require__(/*! ./ui/ui */ "./resources/js/ui/ui.js");
+
 __webpack_require__(/*! ./ui/forms */ "./resources/js/ui/forms.js");
 
 __webpack_require__(/*! ./ui/actions */ "./resources/js/ui/actions.js");
@@ -44053,34 +44055,74 @@ document.addEventListener('app.ready', function () {
   $('.filter-slug').on('change blur', function (e) {
     var el = $(this)[0];
     el.value = el.value.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+  }); // Field clear.
+
+  $('.field-clear').each(function () {
+    var $fieldWrap = $(this);
+    var $button = $('button.clear', $fieldWrap);
+    var $field = $('input', $fieldWrap);
+    $field.toggleClass('dirty', $field.val().length > 0);
+    $field.on('keyup change', function (e) {
+      $field.toggleClass('dirty', $field.val().length > 0);
+    });
+    $button.on('click', function (e) {
+      e.preventDefault();
+      $field.val('').trigger('keyup');
+    });
   }); // Search.
 
   var $searchWrap = $('#nav-top-search');
   var $searchField = $('input', $searchWrap);
   var $searchResultsHolder = $('.search-results-holder', $searchWrap);
-
-  var debouncedSearch = _.debounce(doSearch, 250);
+  var searchController;
+  var searchQuery;
 
   function doSearch() {
-    var value = $searchField.val();
-    console.log(value.length);
+    var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var value = $searchField.val().trim();
 
-    if (value.length < 3) {
-      $searchResultsHolder.html('');
+    if (searchQuery === value) {
       return;
     }
 
-    fetch('/search/' + value).then(function (response) {
-      console.log(response);
+    if (searchController) {
+      // Abort any previous searches.
+      searchController.abort();
+    } // Clear the results.
+
+
+    $searchResultsHolder.empty();
+
+    if (value.length < 2 || e && e.key === 'Escape') {
+      // Keyword is too short, field value is the same or escape was pressed, bail.
+      $searchField.removeClass('loading');
+      return;
+    } else {
+      // Loading state.
+      $searchField.addClass('loading');
+    }
+
+    searchQuery = value;
+    searchController = new AbortController();
+    fetch('/search/' + value, {
+      signal: searchController.signal
+    }).then(function (response) {
+      $searchField.removeClass('loading');
       return response.json();
     }).then(function (json) {
       if (json.html) {
         $searchResultsHolder.html(json.html);
       }
+    }).catch(function (err) {
+      if (err.name === 'AbortError') {
+        console.log('Search cancelled');
+      } else {
+        console.error('Search error!', err);
+      }
     });
   }
 
-  $searchField.on('keyup', debouncedSearch);
+  $searchField.on('keyup', doSearch);
 });
 
 /***/ }),
@@ -44150,6 +44192,23 @@ if (navigation) {
     });
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js/ui/ui.js":
+/*!*******************************!*\
+  !*** ./resources/js/ui/ui.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.addEventListener('app.ready', function () {
+  // Hide elements on blur.
+  $('body').on('click', function (e) {
+    var $target = $(e.target);
+    $('.hide-on-blur').not($target.parents('.hide-on-blur')).hide();
+  });
+});
 
 /***/ }),
 

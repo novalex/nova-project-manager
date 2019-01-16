@@ -27,19 +27,22 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-body {
-  line-height: 1;
-}
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: #dbdbdb;
 }
-body::-webkit-scrollbar {
+
+::-webkit-scrollbar {
   width: 6px;
   background-color: #dbdbdb;
 }
-body::-webkit-scrollbar-thumb {
+
+::-webkit-scrollbar-thumb {
   border-radius: 3px;
   background-color: #222;
+}
+
+body {
+  line-height: 1;
 }
 
 ol, ul {
@@ -107,6 +110,18 @@ button:focus,
   100% {
     -webkit-transform: translateX(0, 100);
             transform: translateX(0, 100);
+  }
+}
+@-webkit-keyframes spinner {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 .fa,
@@ -5972,6 +5987,7 @@ body {
   position: absolute;
   top: 0;
   left: 50%;
+  width: 280px;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
 }
@@ -5992,7 +6008,11 @@ body {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   background-color: #fff;
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.05);
+}
+#nav-top-search .search-results ul {
+  max-height: 80vh;
+  overflow: auto;
 }
 #nav-top-search .search-results ul li {
   padding: 11px;
@@ -6009,11 +6029,14 @@ body {
 #nav-top-search .search-results ul li:hover {
   background-color: #f4f4f4;
 }
+#nav-top-search .search-results ul li a {
+  color: inherit;
+}
 #nav-top-search .search-results ul li strong,
 #nav-top-search .search-results ul li p,
 #nav-top-search .search-results ul li small {
   display: block;
-  margin-bottom: 11px;
+  padding-bottom: 11px;
 }
 #nav-top-search .search-results ul li em {
   font-style: normal;
@@ -7241,6 +7264,69 @@ select:focus,
 textarea:hover,
 textarea:focus {
   background-color: #fff;
+}
+
+.field-clear,
+.field-loading {
+  position: relative;
+}
+.field-clear input,
+.field-loading input {
+  width: 100%;
+}
+
+.field-clear input {
+  padding-right: 32px;
+}
+.field-clear .clear {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.field-clear .dirty ~ .clear {
+  opacity: 1;
+  visibility: visible;
+}
+
+.field-loading input {
+  padding-right: 32px;
+}
+.field-loading .spinner {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
+  opacity: 0;
+  transition: visibility 0.2s;
+}
+.field-loading .spinner:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  margin-left: -14px;
+  border-radius: 50%;
+  border-top: 2px solid rgba(0, 0, 0, 0.25);
+  border-right: 2px solid transparent;
+  -webkit-animation: spinner 0.6s linear infinite;
+          animation: spinner 0.6s linear infinite;
+}
+.field-loading .loading ~ .spinner {
+  opacity: 1;
 }
 
 button {

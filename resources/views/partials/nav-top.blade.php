@@ -19,7 +19,11 @@
 
 		@if ( ! empty( $has_search ) )
 			<div id="nav-top-search">
-				<input type="text" name="search" placeholder="{{ __( 'Search...' ) }}">
+				<div class="field-clear field-loading">
+					<input type="text" name="search" placeholder="{{ __( 'Search...' ) }}">
+					<i class="spinner"></i>
+					<button class="clear">&times;</button>
+				</div>
 				<div class="search-results-holder"></div>
 			</div>
 		@endif

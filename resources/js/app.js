@@ -22,6 +22,7 @@ if (token) {
 }
 
 // UI.
+require( './ui/ui' );
 require( './ui/forms' );
 require( './ui/actions' );
 require( './ui/editor' );

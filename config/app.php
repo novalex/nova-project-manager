@@ -10,8 +10,6 @@ return [
 	'fallback_locale' => 'en',
 	'key'             => env( 'APP_KEY', 'C35110E6760A01C1C0B6A727EEB4B73B' ),
 	'cipher'          => 'AES-256-CBC',
-	'log'             => env( 'APP_LOG', 'single' ),
-	'log_level'       => env( 'APP_LOG_LEVEL', 'debug' ),
 	'providers'       => [
 
 		/*
@@ -43,6 +41,7 @@ return [
 		/*
 		 * Package Service Providers...
 		 */
+		TomLingham\Searchy\SearchyServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
@@ -89,5 +88,6 @@ return [
 		'URL'          => Illuminate\Support\Facades\URL::class,
 		'Validator'    => Illuminate\Support\Facades\Validator::class,
 		'View'         => Illuminate\Support\Facades\View::class,
+		'Search'       => TomLingham\Searchy\Facades\Searchy::class,
 	],
 ];

@@ -26,22 +26,22 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
+::-webkit-scrollbar-track {
+	background-color: $body-border;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	background-color: $body-border;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: $border-radius;
+	background-color: $nav-bg;
+}
+
 body {
 	line-height: 1;
-
-	&::-webkit-scrollbar-track {
-		background-color: $body-border;
-	}
-
-	&::-webkit-scrollbar {
-		width: 6px;
-		background-color: $body-border;
-	}
-
-	&::-webkit-scrollbar-thumb {
-		border-radius: $border-radius;
-		background-color: $nav-bg;
-	}
 }
 
 ol, ul {

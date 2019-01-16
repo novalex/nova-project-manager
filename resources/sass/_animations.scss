@@ -17,3 +17,9 @@
 		transform: translateX( 0, 100 );
 	}
 }
+
+@keyframes spinner {
+	to {
+		transform: rotate( 360deg );
+	}
+}

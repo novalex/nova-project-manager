@@ -63,6 +63,7 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 	position: absolute;
 	top: 0;
 	left: 50%;
+	width: 280px;
 	transform: translate( -50%, 0 );
 
 	input {
@@ -83,9 +84,12 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 		border-bottom-left-radius: $border-radius;
 		border-bottom-right-radius: $border-radius;
 		background-color: $body-bg;
-		box-shadow: 0 1px 12px rgba(0,0,0,0.05);
+		box-shadow: 0 1px 16px rgba(0,0,0,0.05);
 
 		ul {
+			max-height: 80vh;
+			overflow: auto;
+
 			li {
 				padding: $content-padding / 2;
 				padding-bottom: 0;
@@ -103,11 +107,15 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 					background-color: $body-bg-alt;
 				}
 
+				a {
+					color: inherit;
+				}
+
 				strong,
 				p,
 				small {
 					display: block;
-					margin-bottom: $content-padding / 2
+					padding-bottom: $content-padding / 2
 				}
 
 				em {

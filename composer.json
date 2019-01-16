@@ -10,7 +10,8 @@
         "erusev/parsedown": "^1.7",
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "~1.0"
+		"laravel/tinker": "~1.0",
+		"tom-lingham/searchy": "2.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
