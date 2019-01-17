@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use App\PostType;
-use App\Category;
-use App\User;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller {
@@ -40,9 +37,7 @@ class SearchController extends Controller {
 		$results = array();
 
 		// Get posts.
-		$posts = \Search::search( 'posts' )->fields( 'name', 'slug', 'body' )->query( $query )->get();
-
-		foreach ( $posts as $result ) {
+		foreach ( \Search::search( 'posts' )->fields( 'name', 'slug', 'body' )->query( $query )->get() as $result ) {
 			$post_type = PostType::where( 'id', $result->post_type )->first();
 
 			$results[] = array(
@@ -54,12 +49,16 @@ class SearchController extends Controller {
 		}
 
 		// Get post types.
-		$post_types = \Search::search( 'post_types' )->fields( 'name', 'slug' )->query( $query )->get();
+		foreach ( PostType::hydrate( \Search::search( 'post_types' )->fields( 'name', 'slug' )->query( $query )->get()->toArray() ) as $result ) {
+			$results[] = array(
+				'name' => $this->formatResultName( $result->name ),
+				'type' => __( 'Post Type' ),
+				'link' => url( $result->url ),
+			);
+		}
 
 		// Get categories.
-		$categories = \Search::search( 'categories' )->fields( 'name', 'slug' )->query( $query )->get();
-
-		foreach ( $categories as $result ) {
+		foreach ( \Search::search( 'categories' )->fields( 'name', 'slug' )->query( $query )->get() as $result ) {
 			$post_type = PostType::where( 'id', $result->post_type )->first();
 
 			$results[] = array(
@@ -69,6 +68,7 @@ class SearchController extends Controller {
 			);
 		}
 
+		// Render results.
 		$data = array(
 			'html' => \View::make(
 				'partials.search-results',

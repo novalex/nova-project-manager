@@ -40,7 +40,8 @@ document.addEventListener( 'app.ready', function() {
 	function doSearch( e = null ) {
 		let value = $searchField.val().trim();
 
-		if ( searchQuery === value ) {
+		if ( searchQuery === value && ( ! e || e.key !== 'Escape' ) ) {
+			// Search value didn't change, bail.
 			return;
 		}
 
@@ -53,8 +54,10 @@ document.addEventListener( 'app.ready', function() {
 		$searchResultsHolder.empty();
 
 		if ( value.length < 2 || ( e && e.key === 'Escape' ) ) {
-			// Keyword is too short, field value is the same or escape was pressed, bail.
+			// Keyword is too short or escape was pressed, bail.
 			$searchField.removeClass( 'loading' );
+
+			searchQuery = value;
 
 			return;
 		} else {
