@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration {
 				$table->string( 'name' );
 				$table->string( 'slug' );
 				$table->integer( 'post_type' )->unsigned();
+				$table->integer( 'parent' )->unsigned()->nullable()->default( null );
 				$table->timestamps();
 
 				$table->foreign( 'post_type' )->references( 'id' )->on( 'post_types' );

@@ -68,8 +68,8 @@ class AdminMenuController extends AdminController {
 		return view(
 			$this->view,
 			array(
-				'title'        => sprintf( __( 'New %s' ), $this->strings['singular'] ),
-				'menu_options' => $this->getMenuOptions(),
+				'title'   => sprintf( __( 'New %s' ), $this->strings['singular'] ),
+				'options' => $this->getMenuOptions(),
 			)
 		);
 	}
@@ -133,9 +133,9 @@ class AdminMenuController extends AdminController {
 		return view(
 			$this->view,
 			array(
-				'title'        => sprintf( __( 'Edit %s' ), $menu->name ),
-				'menu'         => $menu,
-				'menu_options' => $this->getMenuOptions( $menu->id ),
+				'title'   => sprintf( __( 'Edit %s' ), $menu->name ),
+				'menu'    => $menu,
+				'options' => $this->getMenuOptions( $menu->id ),
 			)
 		);
 	}
@@ -228,11 +228,11 @@ class AdminMenuController extends AdminController {
 				'type'  => 'text',
 				'label' => __( 'Image' ),
 			),
-			'parent' => array(
-				'type'    => 'select',
-				'label'   => __( 'Parent' ),
-				'choices' => $menu_parents,
-			)
+			// 'parent' => array(
+			// 	'type'    => 'select',
+			// 	'label'   => __( 'Parent' ),
+			// 	'choices' => $menu_parents,
+			// ),
 		);
 	}
 }

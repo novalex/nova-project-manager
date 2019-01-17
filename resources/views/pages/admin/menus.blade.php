@@ -47,7 +47,7 @@
 							</div>
 						</div>
 
-						@foreach ( $menu_options as $option_id => $option )
+						@foreach ( $options as $option_id => $option )
 							<div class="fieldset">
 								<label for="options_{{ $option_id }}">{{ $option['label'] }}</label>
 
@@ -115,7 +115,7 @@
 							</div>
 						</div>
 
-						@foreach ( $menu_options as $option_id => $option )
+						@foreach ( $options as $option_id => $option )
 							<div class="fieldset">
 								<label for="options_{{ $option_id }}">{{ $option['label'] }}</label>
 

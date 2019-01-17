@@ -25,8 +25,13 @@ class AdminSettingsController extends AdminController {
 	 */
 	public function getSettingsFields() {
 		return array(
+			'ui_show_logo' => array(
+				'type'  => 'checkbox',
+				'label' => __( 'Show Logo' ),
+				'desc'  => __( 'Whether to show the logo image in the main menu.' ),
+			),
 			'ui_show_dashboard_menu' => array(
-				'type' => 'checkbox',
+				'type'  => 'checkbox',
 				'label' => __( 'Show "Dashboard" Menu Item' ),
 			),
 		);

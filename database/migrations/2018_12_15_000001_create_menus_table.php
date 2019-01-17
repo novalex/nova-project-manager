@@ -19,7 +19,7 @@ class CreateMenusTable extends Migration {
 				$table->string( 'name' );
 				$table->string( 'url' );
 				$table->text( 'options' )->nullable()->default( null );
-				$table->integer( 'parent' )->nullable()->default( null );
+				$table->integer( 'parent' )->unsigned()->nullable()->default( null );
 			}
 		);
 	}
