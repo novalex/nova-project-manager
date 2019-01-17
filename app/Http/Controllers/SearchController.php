@@ -25,9 +25,10 @@ class SearchController extends Controller {
 	 * Perform search query.
 	 *
 	 * @param string $query The query to search for.
+	 * @param int    $limit The maximum number of results to fetch.
 	 * @return \Illuminate\Http\Response
 	 */
-	public function search( string $query ) {
+	public function search( string $query, int $limit = 10 ) {
 		$this->query = trim( $query );
 		$this->words = explode( ' ', $this->query );
 		usort( $this->words, function( $a, $b ) {
@@ -37,7 +38,7 @@ class SearchController extends Controller {
 		$results = array();
 
 		// Get posts.
-		foreach ( \Search::search( 'posts' )->fields( 'name', 'slug', 'body' )->query( $query )->get() as $result ) {
+		foreach ( \Search::posts( 'name', 'slug', 'body' )->query( $query )->getQuery()->limit( $limit )->get() as $result ) {
 			$post_type = PostType::where( 'id', $result->post_type )->first();
 
 			$results[] = array(
@@ -49,7 +50,7 @@ class SearchController extends Controller {
 		}
 
 		// Get post types.
-		foreach ( PostType::hydrate( \Search::search( 'post_types' )->fields( 'name', 'slug' )->query( $query )->get()->toArray() ) as $result ) {
+		foreach ( PostType::hydrate( \Search::post_types( 'name', 'slug' )->query( $query )->getQuery()->limit( $limit )->get()->toArray() ) as $result ) {
 			$results[] = array(
 				'name' => $this->formatResultName( $result->name ),
 				'type' => __( 'Post Type' ),
@@ -58,7 +59,7 @@ class SearchController extends Controller {
 		}
 
 		// Get categories.
-		foreach ( \Search::search( 'categories' )->fields( 'name', 'slug' )->query( $query )->get() as $result ) {
+		foreach ( \Search::categories( 'name', 'slug' )->query( $query )->getQuery()->limit( $limit )->get() as $result ) {
 			$post_type = PostType::where( 'id', $result->post_type )->first();
 
 			$results[] = array(
