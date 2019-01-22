@@ -11,7 +11,8 @@
 @endsection
 
 @section('content')
-	<div class="single-edit full">
+
+	<div class="single-edit wide">
 		@if ( $errors->any() )
 			<div class="alert -error">
 				<ul>
@@ -64,4 +65,5 @@
 			<button class="button -green -submit">{{ __( 'Create' ) }}</button>
 		</form>
 	</div>
+
 @endsection

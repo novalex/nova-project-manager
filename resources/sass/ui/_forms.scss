@@ -62,7 +62,7 @@ textarea {
 	border: 1px solid $body-border;
 	border-radius: $border-radius;
 	background-color: $input-bg;
-	transition: background-color 0.2s;
+	transition: background-color $transition-duration;
 
 	&:hover,
 	&:focus {
@@ -84,7 +84,7 @@ textarea {
 	$icon-size: 24px;
 
 	input {
-		padding-right: $button-size;
+		padding-right: $button-size !important;
 	}
 
 	.clear {
@@ -98,7 +98,7 @@ textarea {
 		color: $color-bg-dark;
 		opacity: 0;
 		visibility: hidden;
-		transition: opacity 0.2s, visibility 0.2s;
+		transition: opacity $transition-duration, visibility $transition-duration;
 	}
 
 	.dirty ~ .clear {
@@ -112,7 +112,7 @@ textarea {
 	$icon-size: 28px;
 
 	input {
-		padding-right: $button-size;
+		padding-right: $button-size !important;
 	}
 
 	.spinner {
@@ -123,7 +123,7 @@ textarea {
 		width: $button-size;
 		height: $button-size;
 		opacity: 0;
-		transition: visibility 0.2s;
+		transition: visibility $transition-duration;
 
 		&:before {
 			content: '';

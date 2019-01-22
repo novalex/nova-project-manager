@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
+use App\Http\Resources\PostCollection;
 use Illuminate\Http\Request;
 
 class PostController extends Controller {
@@ -74,7 +76,7 @@ class PostController extends Controller {
 			$this->views['index'],
 			array(
 				'title' => sprintf( __( 'Manage %s' ), $this->strings['plural'] ),
-				'posts' => Post::all()->where( 'post_type', $this->post_type['id'] ),
+				'posts' => new PostCollection( Post::where( 'post_type', $this->post_type['id'] )->paginate( 30 ) ),
 			)
 		);
 	}
@@ -136,12 +138,18 @@ class PostController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show( Post $post ) {
+		$category = Category::where( 'id', $post->category )->first();
+
 		return view(
 			$this->views['show'],
 			array(
-				'title'   => $post->name,
-				'post'    => $post,
-				'content' => ( new \Parsedown() )->setBreaksEnabled( true )->text( $post->body ),
+				'title'    => $post->name,
+				'post'     => $post,
+				'content'  => ( new \Parsedown() )->setBreaksEnabled( true )->text( $post->body ),
+				'sec_menu_items' => get_nav_menu_items( 'categories', array(
+					'post_type' => $this->post_type,
+					'current'   => ( $category ) ? $category->id : 0,
+				) ),
 			)
 		);
 	}

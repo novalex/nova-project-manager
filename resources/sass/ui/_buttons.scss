@@ -15,7 +15,7 @@ button {
 	border: 1px solid $body-border;
 	border-radius: $border-radius;
 	background-color: $body-bg-alt;
-	transition: background-color 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+	transition: background-color $transition-duration, color $transition-duration, border $transition-duration, box-shadow $transition-duration;
 
 	&.-submit {
 		line-height: 36px;

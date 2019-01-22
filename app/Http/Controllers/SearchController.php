@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\PostType;
+use App\Http\Resources\PostCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\HtmlString;
 
 class SearchController extends Controller {
 
@@ -22,59 +24,143 @@ class SearchController extends Controller {
 	public $words;
 
 	/**
-	 * Perform search query.
+	 * Maximum number of results to fetch.
 	 *
-	 * @param string $query The query to search for.
-	 * @param int    $limit The maximum number of results to fetch.
+	 * @var int
+	 */
+	public $limit = 30;
+
+	/**
+	 * Whether the current search is a quick search.
+	 *
+	 * @var bool
+	 */
+	public $quicksearch = false;
+
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		if ( ! empty( request()->input( 'query' ) ) ) {
+			$this->query = trim( request()->input( 'query' ) );
+
+			$this->words = explode( ' ', $this->query );
+
+			usort( $this->words, function( $a, $b ) {
+				return strlen( $b ) - strlen( $a );
+			} );
+		}
+
+		if ( ! empty( request()->input( 'limit' ) ) ) {
+			$this->limit = intval( request()->input( 'limit' ) );
+		}
+	}
+
+	/**
+	 * Display search page.
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function search( string $query, int $limit = 10 ) {
-		$this->query = trim( $query );
-		$this->words = explode( ' ', $this->query );
-		usort( $this->words, function( $a, $b ) {
-			return strlen( $b ) - strlen( $a );
-		} );
+	public function index() {
+		$data = array(
+			'title' => __( 'Search' ),
+		);
+
+		if ( ! empty( $this->query ) ) {
+			// A search has been performed, show results.
+			if ( ! empty( request()->input( 'json' ) ) ) {
+				// Send back JSON.
+				return $this->getResultsJSON();
+			}
+
+			$data['title']   = sprintf( __( 'Search results for "%s"' ), $this->query );
+			$data['results'] = $this->search();
+		}
+
+		return view( 'pages.search', $data );
+	}
+
+	/**
+	 * Perform search and return results as array.
+	 *
+	 * @param int $offset The offset amount.
+	 * @return array
+	 */
+	public function search( int $offset = 0 ) {
+		if ( empty( $this->query ) ) {
+			return array();
+		}
 
 		$results = array();
 
 		// Get posts.
-		foreach ( \Search::posts( 'name', 'slug', 'body' )->query( $query )->getQuery()->limit( $limit )->get() as $result ) {
+		$posts = \Search::posts( 'name', 'slug', 'body' )->query( $this->query )->getQuery()->simplePaginate( $this->limit );
+		foreach ( $posts as $result ) {
 			$post_type = PostType::where( 'id', $result->post_type )->first();
 
-			$results[] = array(
+			$group = empty( $post_type ) ? __( 'Posts' ) : str_plural( $post_type->name );
+
+			$results['items'][ $group ][] = array(
 				'name' => $this->formatResultName( $result->name ),
 				'body' => $this->formatResultBody( $result->body ),
-				'type' => empty( $post_type ) ? __( 'Post' ) : $post_type->name,
 				'link' => url( ( empty( $post_type ) ? 'posts' : $post_type->url ) . '/' . $result->slug ),
+			);
+		}
+		// Add pagination information.
+		if ( $this->quicksearch ) {
+			$results['links'] = new HtmlString( '<li class="all-results"><a href="' . url( 'search?query=' . request()->input( 'query' ) ) . '"><strong>' . __( 'View All Results' ) . '</strong></a></li>' );
+		} elseif ( $posts->hasMorePages() ) {
+			$results['links'] = $posts->withPath( '?query=' . $this->query )->links();
+		} else {
+			$results['links'] = '';
+		}
+
+		// If this is a paged query, only return posts.
+		if ( $posts->currentPage() > 1 ) {
+			return $results;
+		}
+
+		// Get categories.
+		$categories = \Search::categories( 'name', 'slug' )->query( $this->query )->getQuery()->limit( $this->limit )->offset( $offset )->get();
+		foreach ( $categories as $result ) {
+			$post_type = PostType::where( 'id', $result->post_type )->first();
+
+			$group = empty( $post_type ) ? __( 'Categories' ) : sprintf( __( '%s Categories' ), $post_type->name );
+
+			$results['items'][ $group ][] = array(
+				'name' => $this->formatResultName( $result->name ),
+				'link' => url( ( empty( $post_type ) ? 'posts' : $post_type->url ) . '/category/' . $result->slug ),
 			);
 		}
 
 		// Get post types.
-		foreach ( PostType::hydrate( \Search::post_types( 'name', 'slug' )->query( $query )->getQuery()->limit( $limit )->get()->toArray() ) as $result ) {
-			$results[] = array(
+		$post_types = PostType::hydrate( \Search::post_types( 'name', 'slug' )->query( $this->query )->getQuery()->limit( $this->limit )->offset( $offset )->get()->toArray() );
+		foreach ( $post_types as $result ) {
+			$group = __( 'Post Types' );
+
+			$results['items'][ $group ][] = array(
 				'name' => $this->formatResultName( $result->name ),
-				'type' => __( 'Post Type' ),
 				'link' => url( $result->url ),
 			);
 		}
 
-		// Get categories.
-		foreach ( \Search::categories( 'name', 'slug' )->query( $query )->getQuery()->limit( $limit )->get() as $result ) {
-			$post_type = PostType::where( 'id', $result->post_type )->first();
+		return $results;
+	}
 
-			$results[] = array(
-				'name' => $this->formatResultName( $result->name ),
-				'type' => empty( $post_type ) ? __( 'Category' ) : sprintf( __( '%s Category' ), $post_type->name ),
-				'link' => url( ( empty( $post_type ) ? 'posts' : $post_type->url ) . '/category/' . $result->slug ),
-			);
-		}
+	/**
+	 * Perform search and return results as JSON.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function getResultsJSON() {
+		$this->quicksearch = true;
 
 		// Render results.
 		$data = array(
 			'html' => \View::make(
 				'partials.search-results',
 				array(
-					'results' => $results,
+					'results' => $this->search(),
 				)
 			)->render(),
 		);

@@ -25,7 +25,7 @@ document.addEventListener( 'app.ready', function() {
 		$button.on( 'click', function( e ) {
 			e.preventDefault();
 
-			$field.val( '' ).trigger( 'keyup' );
+			$field.val( '' ).trigger( 'change' );
 		} );
 	} );
 
@@ -37,43 +37,51 @@ document.addEventListener( 'app.ready', function() {
 	let searchController;
 	let searchQuery;
 
-	function doSearch( e = null ) {
-		let value = $searchField.val().trim();
-
-		if ( searchQuery === value && ( ! e || e.key !== 'Escape' ) ) {
-			// Search value didn't change, bail.
-			return;
-		}
+	function cancelSearch() {
+		$searchField.removeClass( 'loading' );
 
 		if ( searchController ) {
 			// Abort any previous searches.
 			searchController.abort();
 		}
+	};
+
+	function doSearch() {
+		let value = $searchField.val().trim();
+
+		if ( searchQuery === value ) {
+			// Search value didn't change, bail.
+			return;
+		}
+
+		// Cancel previous search.
+		cancelSearch();
 
 		// Clear the results.
 		$searchResultsHolder.empty();
 
-		if ( value.length < 2 || ( e && e.key === 'Escape' ) ) {
-			// Keyword is too short or escape was pressed, bail.
-			$searchField.removeClass( 'loading' );
-
+		if ( value.length < 3 ) {
+			// Query is too short, bail.
 			searchQuery = value;
 
 			return;
-		} else {
-			// Loading state.
-			$searchField.addClass( 'loading' );
 		}
 
-		searchQuery = value;
+		// Loading state.
+		$searchField.addClass( 'loading' );
 
 		searchController = new AbortController();
 
-		fetch( '/search/' + value, {
+		// Fetch results.
+		fetch( '/search?query=' + value + '&json=1&limit=5', {
 			signal: searchController.signal
 		} )
 			.then( function( response ) {
+				searchQuery = value;
+
 				$searchField.removeClass( 'loading' );
+
+				$searchResultsHolder.addClass( 'show' );
 
 				return response.json();
 			} )
@@ -91,6 +99,46 @@ document.addEventListener( 'app.ready', function() {
 			} );
 	}
 
-	$searchField.on( 'keyup', doSearch );
+	let doDebouncedSearch = _.debounce( doSearch, 600, {
+		trailing: true
+	} );
+
+	$searchField.on( 'keyup', function( e ) {
+		if ( ! e || ! e.key ) {
+			return;
+		}
+
+		switch ( e.key ) {
+			case 'Escape':
+				// Escape was pressed, cancel ongoing searches and hide results.
+				cancelSearch();
+
+				$searchResultsHolder.removeClass( 'show' );
+
+				return;
+
+				break;
+			case 'Enter':
+				// Enter was pressed, show results if already loaded.
+				$searchResultsHolder.addClass( 'show' );
+
+				break;
+
+			default:
+				doDebouncedSearch();
+
+				break;
+
+		}
+	} );
+
+	$searchField.on( 'change ', doSearch );
+
+	// Hide search dropdown on blur.
+	$( 'body' ).on( 'click', function( e ) {
+		let $target = $( e.target );
+
+		$searchResultsHolder.not( $target.parents( $searchResultsHolder ) ).removeClass( 'show' );
+	} );
 
 } );

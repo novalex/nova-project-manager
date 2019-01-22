@@ -16,7 +16,7 @@
 @endsection
 
 @section('content')
-	<div class="single-content full">
+	<div class="single-content wide">
 		<div id="post-body">
 			{!! $content !!}
 		</div>

@@ -31,7 +31,7 @@
 		text-align: center;
 		border-bottom: 1px solid $nav-border;
 		background-color: $nav-bg;
-		transition: color 0.2s, background-color 0.2s;
+		transition: background-color 0.15s;
 
 		a {
 			display: block;
@@ -53,13 +53,12 @@
 			font-size: $nav-icon-width;
 			margin: 0 auto 10px;
 			width: $nav-icon-width;
-			opacity: 0.8;
-			transition: opacity 0.2s;
+			opacity: 0.6;
+			transition: opacity 0.15s;
 		}
 
 		&:hover,
 		&.active {
-			color: $nav-color-alt;
 			background-color: $nav-bg-alt;
 
 			.icon {

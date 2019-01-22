@@ -11,7 +11,7 @@
 
 @section('content')
 	@if ( count( $posts ) )
-		<div class="content-list -grid -posts">
+		<div class="content-list -grid -posts" data-cols="3">
 			@foreach ( $posts as $post )
 				<div class="item">
 					<a href="{{ url( "{$url['index']}/{$post['slug']}" ) }}">
@@ -20,6 +20,8 @@
 				</div>
 			@endforeach
 		</div>
+
+		{{ $posts->links() }}
 	@else
 		<div class="no-content">
 			<p>{{ sprintf( __( 'No %1$s in the %2$s folder.' ), $strings['plural'], $category->name ) }}</p>

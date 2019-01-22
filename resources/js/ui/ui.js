@@ -5,6 +5,6 @@ document.addEventListener( 'app.ready', function() {
 		let $target = $( e.target );
 
 		$( '.hide-on-blur' ).not( $target.parents( '.hide-on-blur' ) ).hide();
-	})
+	} );
 
 } );

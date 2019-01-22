@@ -44,4 +44,4 @@ if ( Schema::hasTable('post_types') ) {
 }
 
 // Search.
-Route::get( '/search/{keyword}', 'SearchController@search' );
+Route::get( '/search', 'SearchController@index' );

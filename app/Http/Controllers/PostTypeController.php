@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Http\Resources\PostCollection;
 use App\Category;
 use App\PostType;
 
@@ -39,7 +40,7 @@ class PostTypeController extends PostController {
 	 * @param string $category_slug The category slug.
 	 * @return \Illuminate\Http\Response
 	 */
-	public function category_index( $category_slug ) {
+	public function category_index( string $category_slug ) {
 		$category = Category::where( array(
 			array( 'slug', $category_slug ),
 			array( 'post_type', $this->post_type->id ),
@@ -47,7 +48,7 @@ class PostTypeController extends PostController {
 
 		$title = sprintf( __( 'Manage %1$s %2$s' ), $category->name, str_plural( $this->post_type->name ) );
 
-		$posts = Post::where( 'category', $category->id )->get();
+		$posts = new PostCollection( Post::where( 'category', $category->id )->paginate( 30 ) );
 
 		return view( 'pages.posts.category', compact( 'title', 'category', 'posts' ) );
 	}

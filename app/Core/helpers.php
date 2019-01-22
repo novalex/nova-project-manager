@@ -156,7 +156,7 @@ function get_nav_menu_items( $menu, $args = [] ) {
 
 					$item_url = str_plural( $args['post_type']['slug'] ) . '/category/' . $category->slug;
 
-					if ( \Request::is( [ $item_url, "$item_url/*" ] ) ) {
+					if ( \Request::is( [ $item_url, "$item_url/*" ] ) || ( ! empty( $args['current'] ) && $args['current'] === $category->id ) ) {
 						$item_args['class'] .= ' active';
 					}
 

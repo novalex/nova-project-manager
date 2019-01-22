@@ -10,7 +10,7 @@ class PostsTableSeeder extends Seeder {
 	 * @return void
 	 */
 	public function run() {
-		$records = 100;
+		$records = 5000;
 
 		$title_parts = array(
 			array(

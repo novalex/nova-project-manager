@@ -1,6 +1,6 @@
 a {
 	color: $color-green;
-	transition: color 0.2s;
+	transition: color $transition-duration;
 
 	&:hover,
 	&:focus,

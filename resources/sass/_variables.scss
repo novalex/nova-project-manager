@@ -1,8 +1,8 @@
 
 // Body
 $body-bg: #fff;
-$body-bg-alt: #f4f4f4;
-$body-border: #dbdbdb;
+$body-bg-alt: darken( $body-bg, 5 );
+$body-border: darken( $body-bg, 10 );
 
 // Navbar
 $nav-bg: #222;
@@ -52,4 +52,5 @@ $input-bg-alt: #fff;
 // Misc.
 $border-radius: 3px;
 
+$transition-duration: 0.15s;
 $fade-transition-duration: 0.1s;
