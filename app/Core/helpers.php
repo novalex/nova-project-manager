@@ -1,5 +1,7 @@
 <?php
 
+use App\PostType;
+
 /**
  * Get category name by ID.
  *
@@ -175,4 +177,17 @@ function get_nav_menu_items( $menu, $args = [] ) {
 	}
 
 	return $items;
+}
+
+/**
+ * Return array of post types.
+ *
+ * @return array
+ */
+function get_post_types() {
+	if ( ! Schema::hasTable('post_types') ) {
+		return array();
+	}
+
+	return PostType::all()->toArray();
 }

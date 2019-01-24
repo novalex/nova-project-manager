@@ -107,3 +107,11 @@ blockquote {
 	padding: $content-padding / 2;
 	border-left: 3px solid $body-border;
 }
+
+hr {
+	margin-top: 0;
+	margin-bottom: $content-padding;
+	border-color: $body-border;
+	border-style: solid;
+	border-bottom-width: 0;
+}

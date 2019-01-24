@@ -1,7 +1,7 @@
 
 // Body
 $body-bg: #fff;
-$body-bg-alt: darken( $body-bg, 5 );
+$body-bg-alt: darken( $body-bg, 4 );
 $body-border: darken( $body-bg, 10 );
 
 // Navbar
@@ -46,7 +46,7 @@ $btn-default-color: $text-color;
 
 // Inputs
 $input-padding: 10px;
-$input-bg: #fafafa;
+$input-bg: darken( $body-bg, 3 );
 $input-bg-alt: #fff;
 
 // Misc.
