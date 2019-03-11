@@ -107,10 +107,12 @@ class SearchController extends Controller {
 			);
 		}
 		// Add pagination information.
-		if ( $this->quicksearch ) {
-			$results['links'] = new HtmlString( '<li class="all-results"><a href="' . url( 'search?query=' . request()->input( 'query' ) ) . '"><strong>' . __( 'View All Results' ) . '</strong></a></li>' );
-		} elseif ( $posts->hasMorePages() ) {
-			$results['links'] = $posts->withPath( '?query=' . $this->query )->links();
+		if ( $posts->hasMorePages() ) {
+			if ( $this->quicksearch ) {
+				$results['links'] = new HtmlString( '<li class="all-results"><a href="' . url( 'search?query=' . request()->input( 'query' ) ) . '"><strong>' . __( 'View All Results' ) . '</strong></a></li>' );
+			} else {
+				$results['links'] = $posts->withPath( '?query=' . $this->query )->links();
+			}
 		} else {
 			$results['links'] = '';
 		}

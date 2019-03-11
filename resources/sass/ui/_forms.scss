@@ -56,7 +56,7 @@ form {
 		}
 	}
 
-	input:not([type="submit"]):not([type="file"]),
+	input:not([type="submit"]):not([type="file"]):not([type="checkbox"]):not([type="radio"]),
 	select,
 	textarea {
 		&:first-child {

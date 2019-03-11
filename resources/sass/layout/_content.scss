@@ -52,6 +52,7 @@
 
 		.subtitle {
 			color: $text-color-fade;
+			margin-top: 5px;
 		}
 
 		.item-action {
@@ -81,7 +82,6 @@
 	// Grid display.
 	&.-grid {
 		display: flex;
-		flex-grow: 1;
 		flex-wrap: wrap;
 		flex-direction: row;
 		align-content: flex-start;
@@ -98,7 +98,7 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				padding: 20px 15px;
+				padding: $content-padding / 2 $content-padding * 0.75;
 				height: 100%;
 				border: 1px solid $body-border;
 				border-radius: $border-radius;
@@ -129,6 +129,7 @@
 		&[data-cols="2"] {
 			.item {
 				width: 100%;
+				flex-grow: 0;
 
 				@media(min-width: $width-large) {
 					width: 50%;
@@ -139,6 +140,7 @@
 		&[data-cols="3"] {
 			.item {
 				width: 100%;
+				flex-grow: 0;
 
 				@media( min-width: $width-medium ) {
 					width: 50%;

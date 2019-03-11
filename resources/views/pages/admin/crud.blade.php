@@ -32,33 +32,20 @@
 
 				<form method="POST" id="form-create" name="form-create" action="{{ url( $url ) }}">
 
-					<div class="fieldgroup -post-meta">
+					<div class="fieldgroup">
 
-						<div class="fieldset">
-							<label for="name">{{ __( 'Name' ) }}</label>
-							<input type="text" id="name" name="name" value="{{ old( 'name' ) }}">
-						</div>
-
-						<div class="fieldset">
-							<label for="url">{{ __( 'URL' ) }}</label>
-							<div class="inputgroup">
-								<span class="prefix">{{ url( '/' ) }}/</span>
-								<input type="text" id="url" name="url" value="{{ old( 'url' ) }}">
-							</div>
-						</div>
-
-						@foreach ( $options as $option_id => $option )
+						@foreach ( $fields as $field_id => $field )
 							<div class="fieldset">
-								<label for="options_{{ $option_id }}">{{ $option['label'] }}</label>
+								<label for="options_{{ $field_id }}">{{ $field['label'] }}</label>
 
-								@if ( 'select' === $option['type'] )
-									<select id="options_{{ $option_id }}" name="options[{{ $option_id }}]">
-										@foreach ( $option['choices'] as $choice )
-											<option value="{{ $choice['value'] }}"{{ $choice['value'] === intval( old( 'options.' . $option_id ) ) ? ' selected="selected"' : '' }}>{{ $choice['label'] }}</option>
+								@if ( 'select' === $field['type'] )
+									<select id="options_{{ $field_id }}" name="options[{{ $field_id }}]">
+										@foreach ( $field['choices'] as $choice )
+											<option value="{{ $choice['value'] }}"{{ $choice['value'] === intval( old( 'options.' . $field_id ) ) ? ' selected="selected"' : '' }}>{{ $choice['label'] }}</option>
 										@endforeach
 									</select>
 								@else
-									<input type="{{ $option['type'] }}" id="options_{{ $option_id }}" name="options[{{ $option_id }}]" value="{{ old( 'options.' . $option_id ) }}">
+									<input type="{{ $field['type'] }}" id="options_{{ $field_id }}" name="options[{{ $field_id }}]" value="{{ old( 'options.' . $field_id ) }}">
 								@endif
 							</div>
 						@endforeach
@@ -98,35 +85,35 @@
 					</div>
 				@endif
 
-				<form method="POST" id="form-edit" name="form-edit" action="{{ url( "$url/{$menu->id}" ) }}">
+				<form method="POST" id="form-edit" name="form-edit" action="{{ url( "$url/{$item->id}" ) }}">
 
 					<div class="fieldgroup -post-meta">
 
 						<div class="fieldset">
 							<label for="name">{{ __( 'Name' ) }}</label>
-							<input type="text" id="name" name="name" value="{{ $menu['name'] }}">
+							<input type="text" id="name" name="name" value="{{ $item['name'] }}">
 						</div>
 
 						<div class="fieldset">
 							<label for="url">{{ __( 'URL' ) }}</label>
 							<div class="inputgroup">
 								<span class="prefix">{{ url( '/' ) }}/</span>
-								<input type="text" id="url" name="url" value="{{ $menu['url'] }}">
+								<input type="text" id="url" name="url" value="{{ $item['url'] }}">
 							</div>
 						</div>
 
-						@foreach ( $options as $option_id => $option )
+						@foreach ( $fields as $field_id => $field )
 							<div class="fieldset">
-								<label for="options_{{ $option_id }}">{{ $option['label'] }}</label>
+								<label for="options_{{ $field_id }}">{{ $field['label'] }}</label>
 
-								@if ( 'select' === $option['type'] )
-									<select id="options_{{ $option_id }}" name="options[{{ $option_id }}]">
-										@foreach ( $option['choices'] as $choice )
-											<option value="{{ $choice['value'] }}"{{ $choice['value'] === $menu['options'][ $option_id ] ? ' selected="selected"' : '' }}>{{ $choice['label'] }}</option>
+								@if ( 'select' === $field['type'] )
+									<select id="options_{{ $field_id }}" name="options[{{ $field_id }}]">
+										@foreach ( $field['choices'] as $choice )
+											<option value="{{ $choice['value'] }}"{{ $choice['value'] === $item['options'][ $field_id ] ? ' selected="selected"' : '' }}>{{ $choice['label'] }}</option>
 										@endforeach
 									</select>
 								@else
-									<input type="{{ $option['type'] }}" id="options_{{ $option_id }}" name="options[{{ $option_id }}]" value="{{ $menu['options'][ $option_id ] }}">
+									<input type="{{ $field['type'] }}" id="options_{{ $field_id }}" name="options[{{ $field_id }}]" value="{{ $item['options'][ $field_id ] }}">
 								@endif
 							</div>
 						@endforeach
@@ -151,32 +138,32 @@
 
 		@section('nav-top-actions')
 
-			<a href="{{ url( "$url/create " ) }}" class="button -green">{{ __( 'New Item' ) }}</a>
+			<a href="{{ url( "$url/create " ) }}" class="button -green">{{ sprintf( __( 'New %s' ), ucfirst( $strings['singular'] ) ) }}</a>
 
 		@endsection
 
 		@section('content')
 
-			@if ( count( $menus ) )
-				<div class="content-list -table -menus">
-					@foreach ( $menus as $menu )
+			@if ( count( $items ) )
+				<div class="content-list -table">
+					@foreach ( $items as $item )
 						<div class="item">
 
 							<div class="title">
-								<a href="{{ url( "$url/{$menu['id']}/edit" ) }}" class="no-color">
-									<strong>{{ $menu['name'] }}</strong>
-									<small class="subtitle">{{ url( $menu['url'] ) }}</small>
+								<a href="{{ url( "$url/{$item['id']}/edit" ) }}" class="no-color">
+									<strong>{{ $item['name'] }}</strong>
+									<small class="subtitle">{{ url( $item['url'] ) }}</small>
 								</a>
 							</div>
 
 							<div class="action">
-								<a href="{{ url( "$url/{$menu['id']}/edit" ) }}" class="item-action action-edit">
+								<a href="{{ url( "$url/{$item['id']}/edit" ) }}" class="item-action action-edit">
 									<i class="far fa-edit"></i>
 								</a>
 							</div>
 
 							<div class="action">
-								<form method="POST" action="{{ url( "$url/{$menu['id']}" ) }}">
+								<form method="POST" action="{{ url( "$url/{$item['id']}" ) }}">
 									{{ csrf_field() }} {{ method_field( 'DELETE' ) }}
 									<button class="item-action action-delete">
 										<i class="far fa-trash-alt"></i>
@@ -189,7 +176,7 @@
 				</div>
 			@else
 				<div class="no-content">
-					<p>{{ __( 'No menus created.' ) }}</p>
+					<p>{{ sprintf( __( 'No %s created.' ), $strings['singular'] ) }}</p>
 				</div>
 			@endif
 

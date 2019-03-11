@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
-class AdminMenuController extends AdminController {
+class AdminMenuController extends AdminCrudController {
+
+	/**
+	 * Resource's URL slug.
+	 *
+	 * @var string
+	 */
+	public $url = 'admin/menus';
 
 	/**
 	 * Array of strings describing the resource.
@@ -17,62 +22,6 @@ class AdminMenuController extends AdminController {
 		'singular' => 'menu',
 		'plural'   => 'menus',
 	);
-
-	/**
-	 * Resource's view.
-	 *
-	 * @var string
-	 */
-	public $view = 'pages.admin.menus';
-
-	/**
-	 * Resource's URL slug.
-	 *
-	 * @var string
-	 */
-	public $url = 'admin/menus';
-
-	/**
-	 * Constructor.
-	 */
-	public function __construct() {
-		$route = Route::current();
-		\View::share( 'action', $route ? $route->getActionMethod() : 'index' );
-
-		\View::share( 'url', $this->url );
-
-		parent::__construct();
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index() {
-		return view(
-			$this->view,
-			array(
-				'title' => sprintf( __( 'Manage %s' ), ucwords( $this->strings['plural'] ) ),
-				'menus' => Menu::all(),
-			)
-		);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create() {
-		return view(
-			$this->view,
-			array(
-				'title'   => sprintf( __( 'New %s' ), $this->strings['singular'] ),
-				'options' => $this->getMenuOptions(),
-			)
-		);
-	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -103,39 +52,6 @@ class AdminMenuController extends AdminController {
 			array(
 				'status'  => 'success',
 				'message' => sprintf( __( 'Created %s' ), $menu->name ),
-			)
-		);
-	}
-
-	/**
-	 * Display a menu.
-	 *
-	 * @param  \App\Menu $menu Model.
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show( Menu $menu ) {
-		return view(
-			$this->view,
-			array(
-				'title' => $menu->name,
-				'menu'  => $menu,
-			)
-		);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\Menu $menu Model.
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit( Menu $menu ) {
-		return view(
-			$this->view,
-			array(
-				'title'   => sprintf( __( 'Edit %s' ), $menu->name ),
-				'menu'    => $menu,
-				'options' => $this->getMenuOptions( $menu->id ),
 			)
 		);
 	}
@@ -175,31 +91,31 @@ class AdminMenuController extends AdminController {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Get the items to display.
 	 *
-	 * @param  \App\Menu $menu Model.
-	 * @return \Illuminate\Http\Response
+	 * @return mixed
 	 */
-	public function destroy( Menu $menu ) {
-		$title = $menu->name;
-
-		$menu->destroy( $menu->id );
-
-		return redirect( $this->url )->with(
-			[
-				'status'  => 'success',
-				'message' => sprintf( __( 'Deleted %s' ), $title ),
-			]
-		);
+	public function getItems() {
+		return Menu::all();
 	}
 
 	/**
-	 * Get array of options for menu items.
+	 * Get a single item by ID.
+	 *
+	 * @param int $id The ID of the item to fetch.
+	 * @return mixed
+	 */
+	public function getItem( int $id ) {
+		return Menu::where( 'id', $id )->first();
+	}
+
+	/**
+	 * Get array of fields for create and edit views.
 	 *
 	 * @param int $menu_id ID of the current menu item.
 	 * @return array
 	 */
-	public function getMenuOptions( int $menu_id = 0 ) {
+	public function getFields( int $menu_id = 0 ) {
 		$menu_parents = array_merge(
 			array(
 				array(
@@ -216,6 +132,15 @@ class AdminMenuController extends AdminController {
 		);
 
 		return array(
+			'name'  => array(
+				'type'  => 'text',
+				'label' => __( 'Name' ),
+			),
+			'url'   => array(
+				'type'   => 'text',
+				'label'  => __( 'URL' ),
+				'prefix' => url( '/' ),
+			),
 			'class' => array(
 				'type'  => 'text',
 				'label' => __( 'CSS Classes' ),
