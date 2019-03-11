@@ -37,4 +37,13 @@ class Category extends Model {
 	public function posts( $category_id ) {
 		return Post::where( 'category', $category_id )->get();
 	}
+
+	/**
+	 * Get child categories.
+	 *
+	 * @return mixed
+	 */
+	public function children() {
+		return $this->hasMany( 'App\Category', 'parent' );
+	}
 }

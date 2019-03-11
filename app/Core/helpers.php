@@ -22,26 +22,37 @@ function get_category( $id ) {
  * @return int The category ID.
  */
 function get_category_id( string $name, int $post_type = null ) {
-	$category = App\Category::firstOrNew(
-		array(
-			'name'      => $name,
-			'post_type' => $post_type,
-		)
-	);
+	// Split categories separated by forward slash.
+	$names = explode( '/', $name );
 
-	if ( $category->exists ) {
-		return $category->id;
-	} else {
-		$category->slug = str_slug( $name );
+	$parent_id   = null;
+	$category_id = null;
 
-		if ( $post_type ) {
-			$category->post_type = $post_type;
+	foreach ( $names as $category_name ) {
+		$category = App\Category::firstOrNew(
+			array(
+				'name'      => $category_name,
+				'post_type' => $post_type,
+				'parent'    => $parent_id,
+			)
+		);
+
+		if ( ! $category->exists ) {
+			$category->slug = str_slug( $category_name );
+
+			if ( $post_type ) {
+				$category->post_type = $post_type;
+			}
+
+			$category->save();
 		}
 
-		$category->save();
+		$category_id = $category->id;
 
-		return $category->id;
+		$parent_id = $category_id;
 	}
+
+	return $category_id;
 }
 
 /**
@@ -51,7 +62,11 @@ function get_category_id( string $name, int $post_type = null ) {
  * @return mixed
  */
 function get_categories( $type ) {
-	return DB::table( 'categories' )->where( 'post_type', $type )->get();
+	$categories = App\Category::with( 'children' )->where( 'post_type', $type )->get();
+
+	// dd( $categories );
+
+	return $categories;
 }
 
 /**
