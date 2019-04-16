@@ -16,7 +16,7 @@
 				<div class="item">
 					<a href="{{ url( "{$url['index']}/{$post_type['slug']}" ) }}">
 						<strong class="title">{{ $post_type['name'] }}</strong>
-						<small class="subtitle">{{ get_category( $post_type->category ) }}</small>
+						<small class="subtitle">{{ get_category_name( $post_type->category ) }}</small>
 					</a>
 				</div>
 			@endforeach

@@ -44,7 +44,7 @@
 					<input type="text" id="category" name="category" value="{{ old( 'category' ) }}" list="categories">
 					<datalist id="categories">
 						@foreach ( get_categories( $post_type['id'] ) as $category )
-							<option>{{ $category->name }}</option>
+							<option>{{ get_category_name( $category->id ) }}</option>
 						@endforeach
 					</datalist>
 				</div>

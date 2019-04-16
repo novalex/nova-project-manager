@@ -107,7 +107,7 @@ class PostController extends Controller {
 				'name'     => 'required|unique:posts|max:255',
 				'slug'     => 'unique:posts',
 				'body'     => 'required',
-				'category' => 'alpha',
+				'category' => 'string',
 			)
 		);
 
@@ -183,7 +183,7 @@ class PostController extends Controller {
 				'name'     => 'required|unique:posts,name,' . $post->id . '|max:255',
 				'slug'     => 'unique:posts,slug,' . $post->id,
 				'body'     => 'required',
-				'category' => 'alpha',
+				'category' => 'string',
 			)
 		);
 

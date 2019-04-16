@@ -24,7 +24,7 @@
 		{{ $posts->links() }}
 	@else
 		<div class="no-content">
-			<p>{{ sprintf( __( 'No %1$s in the %2$s folder.' ), $strings['plural'], $category->name ) }}</p>
+			<p>{{ sprintf( __( 'No %1$s in the %2$s folder.' ), $strings['plural'], get_category_name( $category->id ) ) }}</p>
 		</div>
 	@endif
 @endsection

@@ -44,10 +44,10 @@
 
 				<div class="fieldset">
 					<label for="category">{{ __( 'Category' ) }}</label>
-					<input type="text" id="category" name="category" value="{{ get_category( $post->category ) }}" list="categories">
+					<input type="text" id="category" name="category" value="{{ get_category_name( $post->category ) }}" list="categories">
 					<datalist id="categories">
 						@foreach ( get_categories( $post_type['id'] ) as $category )
-							<option>{{ $category->name }}</option>
+							<option>{{ get_category_name( $category->id ) }}</option>
 						@endforeach
 					</datalist>
 				</div>

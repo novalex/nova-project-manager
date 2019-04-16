@@ -1,17 +1,33 @@
 <?php
 
+use App\Category;
 use App\PostType;
 
 /**
  * Get category name by ID.
  *
- * @param int $id The category ID.
+ * @param int    $id        The category ID.
+ * @param string $separator String to use as separator.
  * @return string
  */
-function get_category( $id ) {
-	$category = DB::table( 'categories' )->where( 'id', $id )->first();
+function get_category_name( $id, $separator = '/' ) {
+	$category = Category::where( 'id', $id )->first();
 
-	return ( isset( $category->name ) ) ? $category->name : '';
+	if ( ! $category ) {
+		return;
+	}
+
+	$name = $category->name;
+
+	while ( $category->parent ) {
+		$category = Category::where( 'id', $category->parent )->first();
+
+		if ( $category ) {
+			$name = "{$category->name}{$separator}{$name}";
+		}
+	}
+
+	return $name;
 }
 
 /**
@@ -29,7 +45,7 @@ function get_category_id( string $name, int $post_type = null ) {
 	$category_id = null;
 
 	foreach ( $names as $category_name ) {
-		$category = App\Category::firstOrNew(
+		$category = Category::firstOrNew(
 			array(
 				'name'      => $category_name,
 				'post_type' => $post_type,
@@ -62,9 +78,7 @@ function get_category_id( string $name, int $post_type = null ) {
  * @return mixed
  */
 function get_categories( $type ) {
-	$categories = App\Category::with( 'children' )->where( 'post_type', $type )->get();
-
-	// dd( $categories );
+	$categories = Category::with( 'children' )->where( 'post_type', $type )->get();
 
 	return $categories;
 }
@@ -91,17 +105,10 @@ function get_nav_menu_items( $menu, $args = [] ) {
 		case 'main':
 			$default_primary_menu_items = array(
 				array(
-					'url'     => '/',
+					'url'     => 'admin',
 					'name'    => __( 'Dashboard' ),
 					'options' => array(
 						'icon' => 'fas fa-bars',
-					),
-				),
-				array(
-					'url'     => 'admin',
-					'name'    => __( 'Settings' ),
-					'options' => array(
-						'icon' => 'fas fa-cog',
 					),
 				),
 			);
@@ -169,6 +176,10 @@ function get_nav_menu_items( $menu, $args = [] ) {
 				}
 
 				foreach ( $categories as $category ) {
+					if ( $category->parent ) {
+						continue;
+					}
+
 					$item_args = $args['item_args'];
 
 					$item_url = str_plural( $args['post_type']['slug'] ) . '/category/' . $category->slug;
@@ -184,6 +195,26 @@ function get_nav_menu_items( $menu, $args = [] ) {
 						],
 						$item_args
 					);
+
+					foreach ( $category->descendants() as $category ) {
+						$item_args = $args['item_args'];
+
+						$item_args['class'] .= ' subcategory';
+
+						$item_url = str_plural( $args['post_type']['slug'] ) . '/category/' . $category->slug;
+
+						if ( \Request::is( [ $item_url, "$item_url/*" ] ) || ( ! empty( $args['current'] ) && $args['current'] === $category->id ) ) {
+							$item_args['class'] .= ' active';
+						}
+
+						$items[] = array_merge(
+							[
+								'name' => $category->name,
+								'url'  => $item_url,
+							],
+							$item_args
+						);
+					}
 				}
 			}
 

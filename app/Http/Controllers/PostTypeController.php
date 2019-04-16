@@ -27,6 +27,8 @@ class PostTypeController extends PostController {
 			'plural'   => str_plural( $post_type['name'] )
 		);
 
+		\View::share( 'nav_top_head', __( 'Categories' ) );
+
 		\View::share( 'sec_menu_items', get_nav_menu_items( 'categories', array(
 			'post_type' => $post_type,
 		) ) );
@@ -41,14 +43,23 @@ class PostTypeController extends PostController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function category_index( string $category_slug ) {
+		$category_ids = array();
+
 		$category = Category::where( array(
 			array( 'slug', $category_slug ),
 			array( 'post_type', $this->post_type->id ),
 		) )->first();
 
-		$title = sprintf( __( 'Manage %1$s %2$s' ), $category->name, str_plural( $this->post_type->name ) );
+		$category_ids[] = $category->id;
 
-		$posts = new PostCollection( Post::where( 'category', $category->id )->paginate( 30 ) );
+		// Display all child categories as well.
+		foreach ( $category->descendants() as $child ) {
+			$category_ids[] = $child->id;
+		}
+
+		$title = sprintf( __( 'Manage %1$s %2$s' ), get_category_name( $category->id ), str_plural( $this->post_type->name ) );
+
+		$posts = new PostCollection( Post::whereIn( 'category', $category_ids )->orderBy( 'created_at', 'desc' )->paginate( 30 ) );
 
 		return view( 'pages.posts.category', compact( 'title', 'category', 'posts' ) );
 	}
