@@ -113,7 +113,10 @@
 										@endforeach
 									</select>
 								@else
-									<input type="{{ $field['type'] }}" id="options_{{ $field_id }}" name="options[{{ $field_id }}]" value="{{ $item['options'][ $field_id ] }}">
+									@php
+										$value = ( ! empty( $item['options'][ $field_id ] ) ) ? $item['options'][ $field_id ] : '';
+									@endphp
+									<input type="{{ $field['type'] }}" id="options_{{ $field_id }}" name="options[{{ $field_id }}]" value="{{ $value }}">
 								@endif
 							</div>
 						@endforeach

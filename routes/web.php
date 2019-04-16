@@ -12,9 +12,11 @@
 */
 
 // Index page.
-Route::get( '/', 'Controller@index' );
+Route::get( '/', function() {
+	return redirect( 'admin' );
+} );
 
-// Define settings routes.
+// Define admin routes.
 Route::prefix( 'admin' )->group( function() {
 	Route::get( '/', 'AdminController@index' );
 	Route::get( 'settings', 'AdminSettingsController@index' );
