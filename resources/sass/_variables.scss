@@ -11,8 +11,10 @@ $nav-color: #fff;
 $nav-color-alt: #ddd;
 $nav-border: #000;
 $nav-width: 80px;
+$nav-width-mobile: 40px;
 $nav-logo-width: 40px;
 $nav-icon-width: 24px;
+$nav-icon-width-mobile: 16px;
 
 $nav-sec-width: 200px;
 
@@ -27,6 +29,8 @@ $width-small: 320px;
 $font-family-sans-serif: "Poppins", sans-serif;
 $font-family-monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 $font-size-base: 14px;
+$font-size-s: 12px;
+$font-size-l: 16px;
 $line-height-base: 1.6;
 $text-color: #444;
 $text-color-fade: #777;
@@ -54,3 +58,5 @@ $border-radius: 3px;
 
 $transition-duration: 0.15s;
 $fade-transition-duration: 0.1s;
+
+$nav-mobile-bp: 780px;

@@ -49,9 +49,9 @@ Barba.Pjax.Dom.containerClass = 'app-container';
 // Barba.Prefetch.init();
 
 // Menu navigation.
-const navigation = document.querySelector( '#nav-main-menu' );
-if ( navigation ) {
-	let menuItems = navigation.querySelectorAll( '.menu-item' );
+const mainNavigation = document.getElementById( 'nav-main-menu' );
+if ( mainNavigation ) {
+	let menuItems = mainNavigation.querySelectorAll( '.menu-item' );
 
 	menuItems.forEach( function( item ) {
 		item.addEventListener( 'click', function() {
@@ -61,5 +61,21 @@ if ( navigation ) {
 
 			item.classList.add( 'active' );
 		} );
+	} );
+}
+
+// Secondary menu toggle.
+const secNavigation = document.getElementById( 'nav-sec' );
+if ( secNavigation ) {
+	secNavigation.querySelector( '.mobile-toggle.open' ).addEventListener( 'click', function( event ) {
+		event.preventDefault();
+
+		secNavigation.classList.add( 'open' );
+	} );
+
+	secNavigation.querySelector( '.mobile-toggle.close' ).addEventListener( 'click', function( event ) {
+		event.preventDefault();
+
+		secNavigation.classList.remove( 'open' );
 	} );
 }

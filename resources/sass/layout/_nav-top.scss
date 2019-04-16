@@ -2,10 +2,7 @@
 $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 
 #nav-top {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
+	position: relative;
 	height: $nav-width;
 	display: flex;
 	align-items: center;
@@ -21,10 +18,6 @@ $nav-top-line-height: ( $nav-width - $content-padding * 2 );
 	}
 
 	+ #nav-sec { top: $nav-width; }
-
-	~ #content {
-		padding-top: $nav-width + $content-padding;
-	}
 }
 
 #nav-top-head {

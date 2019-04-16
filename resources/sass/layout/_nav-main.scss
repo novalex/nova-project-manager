@@ -1,4 +1,12 @@
 
+body {
+	padding-left: $nav-width;
+
+	@media ( max-width: $nav-mobile-bp ) {
+		padding-left: $nav-width-mobile;
+	}
+}
+
 #nav-main {
 	width: $nav-width;
 	height: 100%;
@@ -20,6 +28,7 @@
 		display: inline-block;
 		width: $nav-logo-width;
 		vertical-align: middle;
+		max-width: 100%;
 	}
 }
 
@@ -27,7 +36,6 @@
 	li {
 		display: block;
 		color: $nav-color;
-		font-size: 12px;
 		text-align: center;
 		border-bottom: 1px solid $nav-border;
 		background-color: $nav-bg;
@@ -41,6 +49,10 @@
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
+
+			small {
+				font-size: 12px;
+			}
 		}
 
 		&.has-icon a {
@@ -63,6 +75,38 @@
 
 			.icon {
 				opacity: 1;
+			}
+		}
+	}
+}
+
+@media ( max-width: $nav-mobile-bp ) {
+	#nav-main {
+		width: $nav-width-mobile;
+	}
+
+	#logo {
+		padding: 0 10px;
+		height: $nav-width-mobile;
+		line-height: $nav-width-mobile;
+	}
+
+	#nav-main-menu {
+		a {
+			padding: 0 !important;
+			height: $nav-width-mobile - 0.5px !important;
+			line-height: $nav-width-mobile !important;
+
+			small {
+				display: none;
+			}
+
+			.icon {
+				display: inline-block;
+				width: $nav-icon-width-mobile;
+				font-size: $nav-icon-width-mobile;
+				margin-bottom: 0;
+				vertical-align: middle;
 			}
 		}
 	}
