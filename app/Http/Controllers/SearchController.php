@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\PostType;
-use App\Http\Resources\PostCollection;
-use Illuminate\Http\Request;
 use Illuminate\Support\HtmlString;
 
 class SearchController extends Controller {

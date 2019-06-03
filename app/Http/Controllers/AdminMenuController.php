@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 
+use Illuminate\Http\Request;
+
 class AdminMenuController extends AdminCrudController {
 
 	/**
@@ -144,14 +146,17 @@ class AdminMenuController extends AdminCrudController {
 			'class' => array(
 				'type'  => 'text',
 				'label' => __( 'CSS Classes' ),
+				'group' => 'options',
 			),
 			'icon'  => array(
 				'type'  => 'text',
 				'label' => __( 'Icon' ),
+				'group' => 'options',
 			),
 			'image' => array(
 				'type'  => 'text',
 				'label' => __( 'Image' ),
+				'group' => 'options',
 			),
 			// 'parent' => array(
 			// 	'type'    => 'select',

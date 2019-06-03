@@ -89,34 +89,32 @@
 
 					<div class="fieldgroup -post-meta">
 
-						<div class="fieldset">
-							<label for="name">{{ __( 'Name' ) }}</label>
-							<input type="text" id="name" name="name" value="{{ $item['name'] }}">
-						</div>
-
-						<div class="fieldset">
-							<label for="url">{{ __( 'URL' ) }}</label>
-							<div class="inputgroup">
-								<span class="prefix">{{ url( '/' ) }}/</span>
-								<input type="text" id="url" name="url" value="{{ $item['url'] }}">
-							</div>
-						</div>
-
 						@foreach ( $fields as $field_id => $field )
+							@php
+								if ( ! empty( $field['group'] ) ) {
+									$field_name  = $field['group'] . "[{$field_id}]";
+									$field_value = ( isset( $item[ $field['group'] ][ $field_id ] ) ) ? $item[ $field['group'] ][ $field_id ] : '';
+								} else {
+									$field_name  = $field_id;
+									$field_value = isset( $item[ $field_id ] ) ? $item[ $field_id ] : '';
+								}
+							@endphp
 							<div class="fieldset">
-								<label for="options_{{ $field_id }}">{{ $field['label'] }}</label>
+								<label for="{{ $field_id }}">{{ $field['label'] }}</label>
 
 								@if ( 'select' === $field['type'] )
-									<select id="options_{{ $field_id }}" name="options[{{ $field_id }}]">
+									<select id="{{ $field_id }}" name="{{ $field_name }}">
 										@foreach ( $field['choices'] as $choice )
-											<option value="{{ $choice['value'] }}"{{ $choice['value'] === $item['options'][ $field_id ] ? ' selected="selected"' : '' }}>{{ $choice['label'] }}</option>
+											<option value="{{ $choice['value'] }}"{{ $choice['value'] === $field_value ? ' selected="selected"' : '' }}>{{ $choice['label'] }}</option>
 										@endforeach
 									</select>
 								@else
-									@php
-										$value = ( ! empty( $item['options'][ $field_id ] ) ) ? $item['options'][ $field_id ] : '';
-									@endphp
-									<input type="{{ $field['type'] }}" id="options_{{ $field_id }}" name="options[{{ $field_id }}]" value="{{ $value }}">
+									<div class="inputgroup">
+										@if ( ! empty( $field['prefix'] ) )
+											<span class="prefix">{{ url( '/' ) }}/</span>
+										@endif
+										<input type="{{ $field['type'] }}" id="{{ $field_id }}" name="{{ $field_name }}" value="{{ $field_value }}">
+									</div>
 								@endif
 							</div>
 						@endforeach
