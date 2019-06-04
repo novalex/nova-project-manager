@@ -6,20 +6,16 @@ button {
 
 .button {
 	display: inline-block;
-	min-width: 100px;
 	padding: 0 15px;
+	min-width: 42px;
 	color: $text-color;
 	font-weight: 500;
 	text-align: center;
-	line-height: inherit;
+	line-height: 36px;
 	border: 1px solid $body-border;
 	border-radius: $border-radius;
 	background-color: $body-bg-alt;
 	transition: background-color $transition-duration, color $transition-duration, border $transition-duration, box-shadow $transition-duration;
-
-	&.-submit {
-		line-height: 36px;
-	}
 
 	// States
 
@@ -58,5 +54,9 @@ button {
 		&:focus {
 			background-color: darken( $color-red, 4 );
 		}
+	}
+
+	@media ( min-width: $screen-s-bp ) {
+		min-width: 100px;
 	}
 }

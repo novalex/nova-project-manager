@@ -13,7 +13,9 @@
 
 		@if ( View::hasSection('nav-top-title') )
 			<div id="nav-top-title">
-				@yield('nav-top-title')
+				<span>
+					@yield('nav-top-title')
+				</span>
 			</div>
 		@endif
 

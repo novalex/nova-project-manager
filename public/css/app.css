@@ -6005,10 +6005,18 @@ body {
 }
 
 #nav-top-title {
-  max-width: 50%;
   overflow: hidden;
   font-weight: 500;
   text-overflow: ellipsis;
+}
+#nav-top-title > span {
+  overflow: hidden;
+  white-space: normal;
+  vertical-align: middle;
+  display: inline-block;
+  padding-bottom: 4px;
+  line-height: 16px;
+  max-height: 32px;
 }
 #nav-top-title strong {
   display: block;
@@ -6027,12 +6035,8 @@ body {
 }
 
 #nav-top-search {
-  position: absolute;
-  top: 0;
-  left: 50%;
   width: 280px;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
+  margin-left: auto;
 }
 #nav-top-search input {
   padding: 0 10px;
@@ -6094,6 +6098,30 @@ body {
   line-height: 34px;
 }
 
+@media (max-width: 860px) {
+  #nav-top-head {
+    width: auto;
+  }
+}
+@media (max-width: 780px) {
+  #nav-top {
+    height: 40px;
+  }
+  #nav-top > div {
+    padding: 2px 22px;
+  }
+  #nav-top + #nav-sec {
+    top: 40px;
+  }
+
+  #nav-top-search {
+    display: none;
+  }
+
+  #nav-top-actions {
+    padding-left: 0 !important;
+  }
+}
 #nav-sec .menu-item {
   border-bottom: 1px solid #e6e6e6;
   transition: background-color 0.15s;
@@ -6124,6 +6152,10 @@ body {
   opacity: 0.4;
 }
 @media (max-width: 780px) {
+  #nav-sec {
+    box-shadow: 0 1px 0 transparent;
+    transition: box-shadow 0.15s;
+  }
   #nav-sec .menu-items {
     max-height: 0;
     overflow: hidden;
@@ -6134,6 +6166,9 @@ body {
   }
   #nav-sec .mobile-toggle.close {
     display: none;
+  }
+  #nav-sec:target, #nav-sec.open {
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
   }
   #nav-sec:target .mobile-toggle.open, #nav-sec.open .mobile-toggle.open {
     display: none;
@@ -7571,19 +7606,16 @@ button {
 
 .button {
   display: inline-block;
-  min-width: 100px;
   padding: 0 15px;
+  min-width: 42px;
   color: #444;
   font-weight: 500;
   text-align: center;
-  line-height: inherit;
+  line-height: 36px;
   border: 1px solid #e6e6e6;
   border-radius: 3px;
   background-color: whitesmoke;
   transition: background-color 0.15s, color 0.15s, border 0.15s, box-shadow 0.15s;
-}
-.button.-submit {
-  line-height: 36px;
 }
 .button:hover, .button:focus {
   background-color: #fafafa;
@@ -7609,6 +7641,11 @@ button {
 }
 .button.-red:hover, .button.-red:focus {
   background-color: #ca3232;
+}
+@media (min-width: 480px) {
+  .button {
+    min-width: 100px;
+  }
 }
 
 a {

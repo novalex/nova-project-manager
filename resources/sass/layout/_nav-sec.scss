@@ -38,6 +38,9 @@
 	}
 
 	@media ( max-width: $nav-mobile-bp ) {
+		box-shadow: 0 1px 0 transparent;
+		transition: box-shadow $transition-duration;
+
 		.menu-items {
 			max-height: 0;
 			overflow: hidden;
@@ -54,6 +57,8 @@
 
 		&:target,
 		&.open {
+			box-shadow: 0 1px 12px rgba(0,0,0,0.1);
+
 			.mobile-toggle.open {
 				display: none;
 			}

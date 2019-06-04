@@ -20,6 +20,7 @@ $nav-sec-width: 200px;
 
 // Content
 $content-padding: 22px;
+$content-padding-s: 12px;
 
 $width-large: 1024px;
 $width-medium: 640px;
@@ -59,4 +60,9 @@ $border-radius: 3px;
 $transition-duration: 0.15s;
 $fade-transition-duration: 0.1s;
 
+$screen-s-bp: 480px;
+$screen-m-bp: 768px;
+$screen-l-bp: 960px;
+
 $nav-mobile-bp: 780px;
+$nav-top-bp: 860px;
