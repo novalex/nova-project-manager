@@ -112,6 +112,10 @@
 									$field_name  = $field_id;
 									$field_value = isset( $item[ $field_id ] ) ? $item[ $field_id ] : '';
 								}
+
+								if ( 'password' === $field_id ) {
+									$field_value = '';
+								}
 							@endphp
 							<div class="fieldset">
 								<label for="{{ $field_id }}">{{ $field['label'] }}</label>
@@ -167,7 +171,9 @@
 							<div class="title">
 								<a href="{{ url( "$url/{$item['id']}/edit" ) }}" class="no-color">
 									<strong>{{ $item['name'] }}</strong>
-									<small class="subtitle">{{ url( $item['url'] ) }}</small>
+									@if ( ! empty( $item['url'] ) )
+										<small class="subtitle">{{ url( $item['url'] ) }}</small>
+									@endif
 								</a>
 							</div>
 

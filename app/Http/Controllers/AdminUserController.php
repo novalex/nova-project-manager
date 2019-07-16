@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Support\Facades\Route;
 
-class AdminUserController extends AdminController {
+use Illuminate\Http\Request;
+
+class AdminUserController extends AdminCrudController {
+
+	/**
+	 * Resource's URL slug.
+	 *
+	 * @var string
+	 */
+	public $url = 'admin/users';
 
 	/**
 	 * Array of strings describing the resource.
@@ -18,59 +26,6 @@ class AdminUserController extends AdminController {
 	);
 
 	/**
-	 * Resource's view.
-	 *
-	 * @var string
-	 */
-	public $view = 'pages.admin.users';
-
-	/**
-	 * Resource's URL slug.
-	 *
-	 * @var string
-	 */
-	public $url = 'admin/users';
-
-	/**
-	 * Constructor.
-	 */
-	public function __construct() {
-		\View::share( 'url', $this->url );
-		\View::share( 'action', Route::current() );
-
-		parent::__construct();
-	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index() {
-		return view(
-			$this->view,
-			array(
-				'title' => sprintf( __( 'Manage %s' ), ucwords( $this->strings['plural'] ) ),
-				'users' => User::all(),
-			)
-		);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create() {
-		return view(
-			$this->view,
-			array(
-				'title' => sprintf( __( 'New %s' ), $this->strings['singular'] ),
-			)
-		);
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request $request Request object.
@@ -79,19 +34,17 @@ class AdminUserController extends AdminController {
 	public function store( Request $request ) {
 		$request->validate(
 			array(
-				'name'    => 'required|unique:users|max:255',
-				'url'     => 'required|unique:users',
-				'options' => 'nullable|array',
-				'parent'  => 'nullable|integer',
+				'name'     => 'required|string|max:255',
+				'email'    => 'required|string|email|max:255|unique:users',
+				'password' => 'required|string|min:6',
 			)
 		);
 
 		$user = User::create(
 			array(
-				'name'    => $request->name,
-				'url'     => $request->url,
-				'options' => $request->options,
-				'parent'  => $request->parent,
+				'name'     => $request->name,
+				'email'    => $request->email,
+				'password' => bcrypt( $request->password ),
 			)
 		);
 
@@ -104,38 +57,6 @@ class AdminUserController extends AdminController {
 	}
 
 	/**
-	 * Display a user.
-	 *
-	 * @param  \App\User $user Model.
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show( User $user ) {
-		return view(
-			$this->view,
-			array(
-				'title' => $user->name,
-				'user'  => $user,
-			)
-		);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\User $user Model.
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit( User $user ) {
-		return view(
-			$this->view,
-			array(
-				'title' => __( 'Edit %s', $user->name ),
-				'user'  => $user,
-			)
-		);
-	}
-
-	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request $request Request object.
@@ -143,23 +64,23 @@ class AdminUserController extends AdminController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update( Request $request, User $user ) {
-		$request->validate(
-			array(
-				'name'    => 'required|unique:users|max:255',
-				'url'     => 'required|unique:users',
-				'options' => 'nullable|array',
-				'parent'  => 'nullable|integer',
-			)
+		$validate_fields = array(
+			'name'  => 'required|string|max:255',
+			'email' => "required|string|email|max:255|unique:users,email,{$user->id}",
 		);
 
-		$user->update(
-			array(
-				'name'    => $request->name,
-				'url'     => $request->url,
-				'options' => $request->options,
-				'parent'  => $request->parent,
-			)
+		$update_fields = array(
+			'name'  => $request->name,
+			'email' => $request->email,
 		);
+
+		if ( ! empty( $request->password ) ) {
+			$validate_fields['password'] = 'required|string|min:6';
+			$update_fields['password']   = bcrypt( $request->password );
+		}
+
+		$request->validate( $validate_fields );
+		$user->update( $update_fields );
 
 		return redirect( $this->url )->with(
 			array(
@@ -170,21 +91,44 @@ class AdminUserController extends AdminController {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Get the items to display.
 	 *
-	 * @param  \App\User $user Model.
-	 * @return \Illuminate\Http\Response
+	 * @return mixed
 	 */
-	public function destroy( User $user ) {
-		$title = $user->name;
+	public function getItems() {
+		return User::all();
+	}
 
-		$user->destroy( $user->id );
+	/**
+	 * Get a single item by ID.
+	 *
+	 * @param int $id The ID of the item to fetch.
+	 * @return mixed
+	 */
+	public function getItem( int $id ) {
+		return User::where( 'id', $id )->first();
+	}
 
-		return redirect( $this->url )->with(
-			[
-				'status'  => 'success',
-				'message' => __( 'Deleted %s', $title ),
-			]
+	/**
+	 * Get array of fields for create and edit views.
+	 *
+	 * @param int $user_id ID of the current user item.
+	 * @return array
+	 */
+	public function getFields( int $user_id = 0 ) {
+		return array(
+			'name'  => array(
+				'type'  => 'text',
+				'label' => __( 'Name' ),
+			),
+			'email' => array(
+				'type'  => 'text',
+				'label' => __( 'Email' ),
+			),
+			'password' => array(
+				'type'  => 'password',
+				'label' => __( 'Password' ),
+			),
 		);
 	}
 }
