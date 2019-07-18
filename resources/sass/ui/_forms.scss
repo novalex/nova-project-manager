@@ -32,6 +32,18 @@ form {
 			width: auto;
 		}
 	}
+
+	&.checkbox {
+		margin-bottom: $content-padding / 2;
+	}
+
+	&.actions {
+		> button,
+		> .button,
+		> a {
+			margin-right: $content-padding / 2;
+		}
+	}
 }
 
 .inputgroup {

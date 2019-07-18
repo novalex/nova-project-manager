@@ -11,6 +11,10 @@
 |
 */
 
+Auth::routes( array(
+	'register' => false,
+) );
+
 // Index page.
 Route::get( '/', function() {
 	return redirect( 'admin' );

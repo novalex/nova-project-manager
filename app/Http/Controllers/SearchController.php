@@ -39,6 +39,8 @@ class SearchController extends Controller {
 	 * Constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
+
 		if ( ! empty( request()->input( 'query' ) ) ) {
 			$this->query = trim( request()->input( 'query' ) );
 

@@ -6223,8 +6223,18 @@ body {
 #content > div.wide {
   width: 1024px;
 }
+#content > div.medium {
+  width: 640px;
+}
+#content > div.small {
+  width: 320px;
+}
 #content > div.full {
   width: 100%;
+}
+#content > div.center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .content-list .item {
@@ -7416,6 +7426,14 @@ form {
 .fieldset.inline select,
 .fieldset.inline textarea {
   width: auto;
+}
+.fieldset.checkbox {
+  margin-bottom: 11px;
+}
+.fieldset.actions > button,
+.fieldset.actions > .button,
+.fieldset.actions > a {
+  margin-right: 11px;
 }
 
 .inputgroup {

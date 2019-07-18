@@ -8,6 +8,8 @@ class AdminController extends Controller {
 	 * Constructor.
 	 */
 	public function __construct() {
+		parent::__construct();
+
 		\View::share( 'sec_menu_items', array(
 			array(
 				'url'     => 'admin',

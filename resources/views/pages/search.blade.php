@@ -19,7 +19,7 @@
 
 				<hr>
 
-				<div class="fieldset inline">
+				<div class="fieldset inline checkbox">
 					<label>{{ __( 'Objects' ) }}</label>
 
 					@foreach ( [ 'Post', 'Post Type', 'Category' ] as $object )
@@ -32,7 +32,7 @@
 
 				<hr>
 
-				<div class="fieldset inline">
+				<div class="fieldset inline checkbox">
 					<label>{{ __( 'Post Types' ) }}</label>
 
 					@foreach ( get_post_types() as $post_type )
