@@ -103,26 +103,40 @@ function get_nav_menu_items( $menu, $args = [] ) {
 
 		// Main menu.
 		case 'main':
-			$default_primary_menu_items = array(
-				array(
-					'url'     => 'admin',
-					'name'    => __( 'Dashboard' ),
-					'options' => array(
-						'icon' => 'fas fa-bars',
-					),
-				),
-			);
-
 			$primary_menu_items = App\Menu::all()->toArray();
-
 			if ( ! count( $primary_menu_items ) ) {
 				$primary_menu_items = array();
 			}
 
-			foreach ( array_merge(
-				$default_primary_menu_items,
+			$primary_menu_items = array_merge(
+				array(
+					array(
+						'url'     => 'admin',
+						'name'    => __( 'Dashboard' ),
+						'options' => array(
+							'icon' => 'fas fa-bars',
+						),
+					),
+				),
 				$primary_menu_items
-			) as $_item ) {
+			);
+
+			if ( Auth::check() ) {
+				$primary_menu_items = array_merge(
+					$primary_menu_items,
+					array(
+						array(
+							'url'     => 'logout',
+							'name'    => __( 'Log Out' ),
+							'options' => array(
+								'icon' => 'fas fa-sign-out-alt',
+							),
+						),
+					)
+				);
+			}
+
+			foreach ( $primary_menu_items as $_item ) {
 				$class = array();
 
 				if ( isset( $_item['options']['class'] ) ) {

@@ -14,6 +14,7 @@
 Auth::routes( array(
 	'register' => false,
 ) );
+Route::get( '/logout', 'Auth\LoginController@logout' )->name('logout');
 
 // Index page.
 Route::get( '/', function() {
