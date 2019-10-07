@@ -7,7 +7,7 @@
 @section('content')
 
 	<div class="auth-content small center">
-		@if ($errors->has('email'))
+		@if ( $errors->has('email') )
 			<ul class="alert -error">
 				<li role="alert">{{ $errors->first('email') }}</li>
 			</ul>

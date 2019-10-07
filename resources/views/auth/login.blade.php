@@ -7,6 +7,17 @@
 @section('content')
 
 	<div class="auth-content small center">
+		@if ( $errors->has('email') || $errors->has('password') )
+			<ul class="alert -error">
+				@if ( $errors->has('email') )
+					<li role="alert">{{ $errors->first('email') }}</li>
+				@endif
+				@if ( $errors->has('password') )
+					<li role="alert">{{ $errors->first('password') }}</li>
+				@endif
+			</ul>
+		@endif
+
 		<form method="POST" action="{{ route('login') }}">
 			@csrf
 
@@ -14,24 +25,12 @@
 				<label for="email">{{ __('Email') }}</label>
 
 				<input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-				@if ($errors->has('email'))
-					<span class="invalid-feedback" role="alert">
-						<strong>{{ $errors->first('email') }}</strong>
-					</span>
-				@endif
 			</div>
 
 			<div class="fieldset">
 				<label for="password">{{ __('Password') }}</label>
 
 				<input id="password" type="password" class="{{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" required>
-
-				@if ($errors->has('password'))
-					<span class="invalid-feedback" role="alert">
-						<strong>{{ $errors->first('password') }}</strong>
-					</span>
-				@endif
 			</div>
 
 			<div class="fieldset checkbox">
